@@ -18,7 +18,11 @@
 
 // As this script is also accessed from the buildSrc project,
 // we can't use rootProject for the path as both builds share the same config directory.
-val codeQualityConfigDir = buildscript.sourceFile!!.parentFile.parentFile.parentFile.resolve("config")
+val codeQualityConfigDir = if (rootProject.name == "buildSrc") {
+    rootProject.file("../config")
+} else {
+    rootProject.file("config")
+}
 
 configureCheckstyle(codeQualityConfigDir)
 configureCodenarc(codeQualityConfigDir)
