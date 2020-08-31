@@ -21,28 +21,28 @@ plugins {
 description = "File system watchers for keeping the VFS up-to-date"
 
 dependencies {
-    api(project(":snapshots"))
+    api(project(":distribution-core:snapshots"))
 
-    implementation(project(":base-annotations"))
-    implementation(project(":build-operations"))
+    implementation(project(":distribution-core:base-annotations"))
+    implementation(project(":distribution-core:build-operations"))
 
     implementation(libs.guava)
     implementation(libs.nativePlatform)
     implementation(libs.nativePlatformFileEvents)
     implementation(libs.slf4jApi)
 
-    testImplementation(project(":process-services"))
-    testImplementation(project(":resources"))
-    testImplementation(project(":persistent-cache"))
-    testImplementation(project(":build-option"))
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":file-collections")))
-    testImplementation(testFixtures(project(":tooling-api")))
-    testImplementation(testFixtures(project(":launcher")))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(project(":distribution-core:persistent-cache"))
+    testImplementation(project(":distribution-core:build-option"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:file-collections")))
+    testImplementation(testFixtures(project(":distribution-core:tooling-api")))
+    testImplementation(testFixtures(project(":distribution-core:launcher")))
 
     testImplementation(libs.commonsIo)
 
     integTestImplementation(libs.jetty)
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }

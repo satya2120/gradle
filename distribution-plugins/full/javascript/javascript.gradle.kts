@@ -18,17 +18,17 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":reporting"))
-    implementation(project(":plugins"))
-    implementation(project(":workers"))
-    implementation(project(":dependency-management")) // Required by JavaScriptExtension#getGoogleApisRepository()
-    implementation(project(":language-java")) // Required by RhinoShellExec
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:reporting"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-plugins:core:dependency-management")) // Required by JavaScriptExtension#getGoogleApisRepository()
+    implementation(project(":distribution-plugins:core:language-java")) // Required by RhinoShellExec
 
     implementation(libs.groovy)
     implementation(libs.slf4jApi)
@@ -38,12 +38,12 @@ dependencies {
     implementation(libs.gson) // used by JsHint.coordinates
     implementation(libs.simple) // used by http package in envjs.coordinates
 
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }
 
 classycle {

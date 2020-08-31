@@ -18,12 +18,12 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
+    implementation(project(":distribution-core:base-services"))
 
     implementation(libs.groovy)
     implementation(libs.guava)
 
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 }
 
 strictCompile {

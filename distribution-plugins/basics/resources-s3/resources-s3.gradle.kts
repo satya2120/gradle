@@ -5,11 +5,11 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":resources"))
-    implementation(project(":resources-http"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-plugins:basics:resources-http"))
 
     implementation(libs.slf4jApi)
     implementation(libs.guava)
@@ -25,17 +25,17 @@ dependencies {
     implementation(libs.joda)
     implementation(libs.commonsLang)
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":dependency-management")))
-    testImplementation(testFixtures(project(":ivy")))
-    testImplementation(testFixtures(project(":maven")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:dependency-management")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:ivy")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:maven")))
 
-    integTestImplementation(project(":logging"))
+    integTestImplementation(project(":distribution-core:logging"))
     integTestImplementation(libs.commonsIo)
     integTestImplementation(libs.littleproxy)
     integTestImplementation(libs.jetty)
 
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
 }
 
 testFilesCleanup {

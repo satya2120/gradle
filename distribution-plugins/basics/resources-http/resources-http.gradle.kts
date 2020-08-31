@@ -18,12 +18,12 @@ plugins {
 }
 
 dependencies {
-    api(project(":resources"))
-    implementation(project(":base-services"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":model-core"))
-    implementation(project(":logging"))
+    api(project(":distribution-core:resources"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:logging"))
 
     implementation(libs.commonsHttpclient)
     implementation(libs.slf4jApi)
@@ -35,15 +35,15 @@ dependencies {
     implementation(libs.xerces)
     implementation(libs.nekohtml)
 
-    testImplementation(project(":internal-integ-testing"))
+    testImplementation(project(":fixtures:internal-integ-testing"))
     testImplementation(libs.jetty)
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":logging")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:logging")))
 
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":logging"))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":distribution-core:logging"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
     testFixturesImplementation(libs.slf4jApi)
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }

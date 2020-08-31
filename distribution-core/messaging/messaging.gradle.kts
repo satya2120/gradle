@@ -5,17 +5,17 @@ plugins {
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    implementation(project(":base-services"))
+    implementation(project(":distribution-core:base-services"))
 
     implementation(libs.fastutil)
     implementation(libs.slf4jApi)
     implementation(libs.guava)
     implementation(libs.kryo)
 
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testFixturesImplementation(project(":base-services"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
     testFixturesImplementation(libs.slf4jApi)
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }

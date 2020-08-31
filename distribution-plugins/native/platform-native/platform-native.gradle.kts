@@ -20,17 +20,17 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":native"))
-    implementation(project(":process-services"))
-    implementation(project(":file-collections"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":workers"))
-    implementation(project(":platform-base"))
-    implementation(project(":diagnostics"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:diagnostics"))
 
     implementation(libs.nativePlatform)
     implementation(libs.groovy)
@@ -42,32 +42,32 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.inject)
 
-    testFixturesApi(project(":resources"))
-    testFixturesApi(testFixtures(project(":ide")))
-    testFixturesImplementation(testFixtures(project(":core")))
-    testFixturesImplementation(project(":internal-integ-testing"))
-    testFixturesImplementation(project(":native"))
-    testFixturesImplementation(project(":platform-base"))
-    testFixturesImplementation(project(":file-collections"))
-    testFixturesImplementation(project(":process-services"))
-    testFixturesImplementation(project(":snapshots"))
+    testFixturesApi(project(":distribution-core:resources"))
+    testFixturesApi(testFixtures(project(":distribution-plugins:jvm:ide")))
+    testFixturesImplementation(testFixtures(project(":distribution-core:core")))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:native"))
+    testFixturesImplementation(project(":distribution-plugins:core:platform-base"))
+    testFixturesImplementation(project(":distribution-core:file-collections"))
+    testFixturesImplementation(project(":distribution-core:process-services"))
+    testFixturesImplementation(project(":distribution-core:snapshots"))
     testFixturesImplementation(libs.guava)
     testFixturesImplementation(libs.nativePlatform)
     testFixturesImplementation(libs.commonsLang)
     testFixturesImplementation(libs.commonsIo)
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":messaging")))
-    testImplementation(testFixtures(project(":platform-base")))
-    testImplementation(testFixtures(project(":model-core")))
-    testImplementation(testFixtures(project(":diagnostics")))
-    testImplementation(testFixtures(project(":base-services")))
-    testImplementation(testFixtures(project(":snapshots")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:messaging")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:platform-base")))
+    testImplementation(testFixtures(project(":distribution-core:model-core")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:diagnostics")))
+    testImplementation(testFixtures(project(":distribution-core:base-services")))
+    testImplementation(testFixtures(project(":distribution-core:snapshots")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-native")) {
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-native")) {
         because("Required 'ideNative' to test visual studio project file generation for generated sources")
     }
 }

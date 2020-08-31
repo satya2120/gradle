@@ -6,24 +6,24 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":cli"))
-    implementation(project(":messaging"))
-    implementation(project(":build-option"))
-    implementation(project(":native"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":files"))
-    implementation(project(":file-collections"))
-    implementation(project(":snapshots"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":bootstrap"))
-    implementation(project(":jvm-services"))
-    implementation(project(":build-events"))
-    implementation(project(":tooling-api"))
-    implementation(project(":file-watching"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:cli"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:build-option"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:snapshots"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:bootstrap"))
+    implementation(project(":distribution-core:jvm-services"))
+    implementation(project(":distribution-core:build-events"))
+    implementation(project(":distribution-core:tooling-api"))
+    implementation(project(":distribution-core:file-watching"))
 
     implementation(libs.groovy) // for 'ReleaseInfo.getVersion()'
     implementation(libs.slf4jApi)
@@ -38,39 +38,39 @@ dependencies {
     runtimeOnly(libs.commonsLang)
     runtimeOnly(libs.slf4jApi)
 
-    manifestClasspath(project(":bootstrap"))
-    manifestClasspath(project(":base-services"))
-    manifestClasspath(project(":core-api"))
-    manifestClasspath(project(":core"))
-    manifestClasspath(project(":persistent-cache"))
+    manifestClasspath(project(":distribution-core:bootstrap"))
+    manifestClasspath(project(":distribution-core:base-services"))
+    manifestClasspath(project(":distribution-core:core-api"))
+    manifestClasspath(project(":distribution-core:core"))
+    manifestClasspath(project(":distribution-core:persistent-cache"))
 
-    testImplementation(project(":internal-integ-testing"))
-    testImplementation(project(":native"))
-    testImplementation(project(":cli"))
-    testImplementation(project(":process-services"))
-    testImplementation(project(":core-api"))
-    testImplementation(project(":model-core"))
-    testImplementation(project(":resources"))
-    testImplementation(project(":snapshots"))
-    testImplementation(project(":base-services-groovy")) // for 'Specs'
+    testImplementation(project(":fixtures:internal-integ-testing"))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:cli"))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-core:core-api"))
+    testImplementation(project(":distribution-core:model-core"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(project(":distribution-core:snapshots"))
+    testImplementation(project(":distribution-core:base-services-groovy")) // for 'Specs'
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":language-java")))
-    testImplementation(testFixtures(project(":messaging")))
-    testImplementation(testFixtures(project(":logging")))
-    testImplementation(testFixtures(project(":tooling-api")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:language-java")))
+    testImplementation(testFixtures(project(":distribution-core:messaging")))
+    testImplementation(testFixtures(project(":distribution-core:logging")))
+    testImplementation(testFixtures(project(":distribution-core:tooling-api")))
 
-    integTestImplementation(project(":persistent-cache"))
+    integTestImplementation(project(":distribution-core:persistent-cache"))
     integTestImplementation(libs.slf4jApi)
     integTestImplementation(libs.guava)
     integTestImplementation(libs.commonsLang)
     integTestImplementation(libs.commonsIo)
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-native")) {
-        because("'native' distribution requried for 'ProcessCrashHandlingIntegrationTest.session id of daemon is different from daemon client'")
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-native")) {
+        because("':distribution-core:native' distribution requried for 'ProcessCrashHandlingIntegrationTest.session id of daemon is different from daemon client'")
     }
 }
 

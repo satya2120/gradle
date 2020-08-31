@@ -4,14 +4,14 @@ plugins {
 }
 // end::apply-plugin[]
 
-// tag::dependency-management[]
+// tag::distribution-plugins:core:dependency-management"[]
 library {
     dependencies {
-        api("io.qt:core:5.1")
+        api("io.qt:distribution-core:core:5.1")
         implementation("io.qt:network:5.1")
     }
 }
-// end::dependency-management[]
+// end::distribution-plugins:core:dependency-management"[]
 
 // tag::configure-target-machines[]
 library {

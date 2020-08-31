@@ -40,12 +40,12 @@ publishing {
     repositories {
         maven {
             val releasesRepoUrl = "$buildDir/repos/releases"
-            val snapshotsRepoUrl = "$buildDir/repos/snapshots"
+            val :distribution-core:snapshotsRepoUrl = "$buildDir/repos/:distribution-core:snapshots"
 // end::repo-url-from-variable[]
-            url = uri(if (project.hasProperty("release")) releasesRepoUrl else snapshotsRepoUrl)
+            url = uri(if (project.hasProperty("release")) releasesRepoUrl else :distribution-core:snapshotsRepoUrl)
 // end::repo-url-from-project-property[]
 // tag::repo-url-from-variable[]
-            url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+            url = uri(if (version.toString().endsWith("SNAPSHOT")) :distribution-core:snapshotsRepoUrl else releasesRepoUrl)
 // tag::repo-url-from-project-property[]
         }
     }

@@ -71,8 +71,8 @@ publishing {
         maven {
             // change URLs to point to your repos, e.g. http://my.org/repo
             val releasesRepoUrl = uri("$buildDir/repos/releases")
-            val snapshotsRepoUrl = uri("$buildDir/repos/snapshots")
-            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            val :distribution-core:snapshotsRepoUrl = uri("$buildDir/repos/:distribution-core:snapshots")
+            url = if (version.toString().endsWith("SNAPSHOT")) :distribution-core:snapshotsRepoUrl else releasesRepoUrl
         }
     }
 // tag::pom-customization[]

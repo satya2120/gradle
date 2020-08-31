@@ -23,21 +23,21 @@ plugins {
 description = "Kotlin DSL Integration Tests"
 
 dependencies {
-    testImplementation(testFixtures(project(":kotlin-dsl")))
+    testImplementation(testFixtures(project(":distribution-core:kotlin-dsl")))
 
-    integTestImplementation(project(":base-services"))
-    integTestImplementation(project(":core-api"))
-    integTestImplementation(project(":core"))
-    integTestImplementation(project(":internal-testing"))
+    integTestImplementation(project(":distribution-core:base-services"))
+    integTestImplementation(project(":distribution-core:core-api"))
+    integTestImplementation(project(":distribution-core:core"))
+    integTestImplementation(project(":fixtures:internal-testing"))
     integTestImplementation("com.squareup.okhttp3:mockwebserver:3.9.1")
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 
-    integTestLocalRepository(project(":kotlin-dsl-plugins"))
+    integTestLocalRepository(project(":portal-plugins:kotlin-dsl-plugins"))
 }
 
 val pluginBundles = listOf(
-    ":kotlin-dsl-plugins")
+    ":portal-plugins:kotlin-dsl-plugins")
 
 pluginBundles.forEach {
     evaluationDependsOn(it)

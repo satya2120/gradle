@@ -20,10 +20,10 @@ plugins {
 
 description = "Tools for creating secure hashes for files and other content"
 
-// We need this because org.gradle.internal.nativeintegration.filesystem.Stat is used in workers
+// We need this because org.gradle.internal.:distribution-core:nativeintegration.filesystem.Stat is used in workers
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    implementation(project(":base-annotations"))
+    implementation(project(":distribution-core:base-annotations"))
     implementation(libs.guava)
 }

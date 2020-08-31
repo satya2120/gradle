@@ -19,33 +19,33 @@ plugins {
 }
 
 dependencies {
-    api(project(":build-cache-base"))
-    api(project(":snapshots"))
+    api(project(":distribution-core:build-cache-base"))
+    api(project(":distribution-core:snapshots"))
 
-    implementation(project(":base-services"))
-    implementation(project(":core-api"))
-    implementation(project(":files"))
-    implementation(project(":native"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":resources"))
-    implementation(project(":logging"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-core:logging"))
 
     implementation(libs.slf4jApi)
     implementation(libs.guava)
     implementation(libs.commonsIo)
     implementation(libs.inject)
 
-    jmhImplementation(platform(project(":distributions-dependencies")))
+    jmhImplementation(platform(project(":distribution-setup:distributions-dependencies")))
     jmhImplementation(libs.ant)
     jmhImplementation(libs.commonsCompress)
     jmhImplementation(libs.aircompressor)
     jmhImplementation(libs.snappy)
     jmhImplementation(libs.jtar)
 
-    testImplementation(project(":model-core"))
-    testImplementation(project(":file-collections"))
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":base-services")))
+    testImplementation(project(":distribution-core:model-core"))
+    testImplementation(project(":distribution-core:file-collections"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:base-services")))
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }

@@ -1,5 +1,5 @@
 plugins {
-    id 'windows-resources'
+    id 'windows-:distribution-core:resources'
 }
 
 // tag::resource-only-library[]

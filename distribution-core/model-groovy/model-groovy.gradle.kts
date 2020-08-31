@@ -22,19 +22,19 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":base-services-groovy"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:base-services-groovy"))
 
     implementation(libs.groovy)
     implementation(libs.guava)
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":model-core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:model-core")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("NonTransformedModelDslBackingTest instantiates DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }

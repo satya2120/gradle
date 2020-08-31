@@ -20,19 +20,19 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":file-collections"))
-    implementation(project(":dependency-management"))
-    implementation(project(":ide"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-native"))
-    implementation(project(":language-native"))
-    implementation(project(":testing-base"))
-    implementation(project(":testing-native"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:jvm:ide"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:native:platform-native"))
+    implementation(project(":distribution-plugins:native:language-native"))
+    implementation(project(":distribution-plugins:core:testing-base"))
+    implementation(project(":distribution-plugins:native:testing-native"))
 
     implementation(libs.groovy)
     implementation(libs.slf4jApi)
@@ -41,24 +41,24 @@ dependencies {
     implementation(libs.inject)
     implementation(libs.plist)
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":platform-native")))
-    testImplementation(testFixtures(project(":language-native")))
-    testImplementation(testFixtures(project(":version-control")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-plugins:native:platform-native")))
+    testImplementation(testFixtures(project(":distribution-plugins:native:language-native")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:version-control")))
 
-    integTestImplementation(project(":native"))
+    integTestImplementation(project(":distribution-core:native"))
     integTestImplementation(libs.commonsIo)
     integTestImplementation(libs.jgit)
 
-    testFixturesApi(testFixtures(project(":ide")))
+    testFixturesApi(testFixtures(project(":distribution-plugins:jvm:ide")))
     testFixturesImplementation(libs.plist)
     testFixturesImplementation(libs.guava)
-    testFixturesImplementation(testFixtures(project(":ide")))
+    testFixturesImplementation(testFixtures(project(":distribution-plugins:jvm:ide")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-native"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-native"))
 }
 
 integrationTestUsesSampleDir("subprojects/ide-native/src/main")

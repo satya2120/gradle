@@ -35,20 +35,20 @@ dependencies {
         because("Consumers need to instantiate BuildMutators")
     }
 
-    implementation(project(":base-services"))
-    implementation(project(":native"))
-    implementation(project(":cli"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":core-api"))
-    implementation(project(":build-option"))
-    implementation(project(":file-collections"))
-    implementation(project(":snapshots"))
-    implementation(project(":resources"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":jvm-services"))
-    implementation(project(":wrapper"))
-    implementation(project(":internal-integ-testing"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:cli"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:build-option"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:snapshots"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-core:jvm-services"))
+    implementation(project(":distribution-core:wrapper"))
+    implementation(project(":fixtures:internal-integ-testing"))
 
     implementation(libs.junit)
     implementation(libs.spock)
@@ -69,12 +69,12 @@ dependencies {
     implementation(libs.flightrecorder)
     implementation(libs.mina)
     implementation(libs.jetty)
-    implementation(testFixtures(project(":core")))
-    implementation(testFixtures(project(":tooling-api")))
+    implementation(testFixtures(project(":distribution-core:core")))
+    implementation(testFixtures(project(":distribution-core:tooling-api")))
 
     runtimeOnly("mysql:mysql-connector-java:8.0.17")
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 val reportResources = tasks.register<Copy>("reportResources") {

@@ -30,17 +30,17 @@ dependencies {
 }
 // end::pom-dependencies[]
 
-// tag::process-resources[]
+// tag::process-:distribution-core:resources[]
 tasks {
     processResources {
         expand("version" to version, "buildNumber" to currentBuildNumber)
     }
 }
-// end::process-resources[]
+// end::process-:distribution-core:resources[]
 
 // tag::checkstyle[]
 checkstyle {
-    config = resources.text.fromFile("checkstyle.xml", "UTF-8")
+    config = :distribution-core:resources.text.fromFile("checkstyle.xml", "UTF-8")
     isShowViolations = true
     isIgnoreFailures = false
 }

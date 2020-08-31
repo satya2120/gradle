@@ -27,7 +27,7 @@ plugins {
 val kotlinCompilerEmbeddable by configurations.creating
 
 dependencies {
-    findProject(":distributions-dependencies")?.let { kotlinCompilerEmbeddable(it) }
+    findProject(":distribution-setup:distributions-dependencies")?.let { kotlinCompilerEmbeddable(it) }
     kotlinCompilerEmbeddable(libs.futureKotlin("compiler-embeddable"))
 }
 
@@ -45,7 +45,7 @@ tasks {
         ))
         originalFiles.from(kotlinCompilerEmbeddable)
         dependencies.from(configurations.detachedConfiguration(
-            project.dependencies.project(":distributions-dependencies"),
+            project.dependencies.project(":distribution-setup:distributions-dependencies"),
             project.dependencies.create(libs.jansi)
         ))
         dependenciesIncludes.set(mapOf(

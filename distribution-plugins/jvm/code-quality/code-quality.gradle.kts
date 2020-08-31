@@ -18,33 +18,33 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":native"))
-    implementation(project(":process-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":plugins"))
-    implementation(project(":workers"))
-    implementation(project(":reporting"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-plugins:core:reporting"))
 
     implementation(libs.groovy)
     implementation(libs.guava)
     implementation(libs.inject)
     implementation(libs.ant)
 
-    testImplementation(project(":file-collections"))
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(project(":distribution-core:file-collections"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testFixturesImplementation(project(":core"))
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":base-services"))
+    testFixturesImplementation(project(":distribution-core:core"))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }
 
 classycle {

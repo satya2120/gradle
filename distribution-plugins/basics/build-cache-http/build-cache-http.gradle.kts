@@ -18,13 +18,13 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":build-cache"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":logging"))
-    implementation(project(":resources"))
-    implementation(project(":resources-http"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:build-cache"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-plugins:basics:resources-http"))
 
     implementation(libs.slf4jApi)
     implementation(libs.guava)
@@ -32,9 +32,9 @@ dependencies {
     implementation(libs.commonsLang)
     implementation(libs.inject)
 
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
     integTestImplementation(libs.jetty)
 
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
 }

@@ -18,25 +18,25 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":model-core"))
-    implementation(project(":tooling-api"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:tooling-api"))
 
     implementation(libs.jsr305)
     implementation(libs.guava)
 
-    testImplementation(project(":internal-testing"))
-    testImplementation(project(":model-core"))
+    testImplementation(project(":fixtures:internal-testing"))
+    testImplementation(project(":distribution-core:model-core"))
 
-    integTestImplementation(project(":logging")) {
+    integTestImplementation(project(":distribution-core:logging")) {
         because("This isn't declared as part of integtesting's API, but should be as logging's classes are in fact visible on the API")
     }
-    integTestImplementation(project(":build-option"))
+    integTestImplementation(project(":distribution-core:build-option"))
 
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))  {
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))  {
         because("Requires ':toolingApiBuilders': Event handlers are in the wrong place, and should live in this project")
     }
 }

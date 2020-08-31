@@ -38,7 +38,7 @@ configureTestFixturesForCrossVersionTests()
 fun configureTestFixturesForCrossVersionTests() {
     if (name != "test") {
         dependencies {
-            "crossVersionTestImplementation"(testFixtures(project(":tooling-api")))
+            "crossVersionTestImplementation"(testFixtures(project(":distribution-core:tooling-api")))
         }
     }
 }

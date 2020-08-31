@@ -134,16 +134,16 @@ fun TaskContainer.registerEarlyFeedbackLifecycleTasks() {
     register(compileAllBuild) {
         description = "Initialize CI Pipeline by priming the cache before fanning out"
         group = ciGroup
-        dependsOn(":base-services:createBuildReceipt", "compileAll")
+        dependsOn(":distribution-core:base-services:createBuildReceipt", "compileAll")
     }
 
     register(sanityCheck) {
         description = "Run all basic checks (without tests) - to be run locally and on CI for early feedback"
         group = "verification"
         dependsOn(
-            "compileAll", ":docs:checkstyleApi", "codeQuality", ":internal-build-reports:allIncubationReportsZip",
-            ":architecture-test:checkBinaryCompatibility", ":docs:javadocAll",
-            ":architecture-test:test", ":tooling-api:toolingApiShadedJar")
+            "compileAll", ":documentation:docs:checkstyleApi", "codeQuality", ":code-quality:internal-build-reports:allIncubationReportsZip",
+            ":code-quality:architecture-test:checkBinaryCompatibility", ":documentation:docs:javadocAll",
+            ":code-quality:architecture-test:test", ":distribution-core:tooling-api:toolingApiShadedJar")
     }
 }
 
@@ -154,8 +154,8 @@ fun TaskContainer.registerDistributionsPromotionTasks() {
     register("packageBuild") {
         description = "Build production distros and smoke test them"
         group = "build"
-        dependsOn(":distributions-full:verifyIsProductionBuildEnvironment", ":distributions-full:buildDists",
-            ":distributions-integ-tests:forkingIntegTest", ":docs:releaseNotes", ":docs:incubationReport", ":docs:checkDeadInternalLinks")
+        dependsOn(":distribution-setup:distributions-full:verifyIsProductionBuildEnvironment", ":distribution-setup:distributions-full:buildDists",
+            ":distribution-setup:distributions-integ-tests:forkingIntegTest", ":documentation:docs:releaseNotes", ":documentation:docs:incubationReport", ":documentation:docs:checkDeadInternalLinks")
     }
 }
 

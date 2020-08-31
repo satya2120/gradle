@@ -5,14 +5,14 @@ plugins {
 description = "JVM invocation and inspection abstractions"
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":process-services"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:process-services"))
 
-    testImplementation(project(":native"))
-    testImplementation(project(":core-api"))
-    testImplementation(project(":file-collections"))
-    testImplementation(project(":snapshots"))
-    testImplementation(project(":resources"))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:core-api"))
+    testImplementation(project(":distribution-core:file-collections"))
+    testImplementation(project(":distribution-core:snapshots"))
+    testImplementation(project(":distribution-core:resources"))
     testImplementation(libs.slf4jApi)
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 }

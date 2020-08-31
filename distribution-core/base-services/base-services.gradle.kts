@@ -13,9 +13,9 @@ plugins {
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    api(project(":base-annotations"))
-    api(project(":hashing"))
-    api(project(":build-operations"))
+    api(project(":distribution-core:base-annotations"))
+    api(project(":distribution-core:hashing"))
+    api(project(":distribution-core:build-operations"))
 
     implementation(libs.slf4jApi)
     implementation(libs.guava)
@@ -23,12 +23,12 @@ dependencies {
     implementation(libs.commonsIo)
     implementation(libs.asm)
 
-    integTestImplementation(project(":logging"))
+    integTestImplementation(project(":distribution-core:logging"))
 
     testFixturesImplementation(libs.guava)
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 
     jmh(libs.bouncycastleProvider)
     jmh(libs.guava)

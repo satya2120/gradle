@@ -1,10 +1,10 @@
-// tag::plugins[]
+// tag::distribution-plugins:core:plugins[]
 plugins {
     `java-library`
     `maven-publish`
 }
 // ...
-// end::plugins[]
+// end::distribution-plugins:core:plugins[]
 
 repositories {
     jcenter()

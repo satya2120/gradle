@@ -24,28 +24,28 @@ plugins {
 description = "Kotlin DSL Tooling Builders for IDEs"
 
 dependencies {
-    implementation(project(":kotlin-dsl"))
+    implementation(project(":distribution-core:kotlin-dsl"))
 
-    implementation(project(":base-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":resources"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":plugins"))
-    implementation(project(":tooling-api"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-core:tooling-api"))
 
-    testImplementation(testFixtures(project(":kotlin-dsl")))
-    integTestImplementation(project(":internal-testing"))
+    testImplementation(testFixtures(project(":distribution-core:kotlin-dsl")))
+    integTestImplementation(project(":fixtures:internal-testing"))
 
-    crossVersionTestImplementation(project(":persistent-cache"))
+    crossVersionTestImplementation(project(":distribution-core:persistent-cache"))
     crossVersionTestImplementation(libs.slf4jApi)
     crossVersionTestImplementation(libs.guava)
     crossVersionTestImplementation(libs.ant)
 
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-basics"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
 }
 
 testFilesCleanup {

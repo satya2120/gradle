@@ -19,21 +19,21 @@ plugins {
 }
 
 dependencies {
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":core"))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":distribution-core:core"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
 
-    testImplementation(testFixtures(project(":kotlin-dsl")))
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:kotlin-dsl")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    integTestImplementation(project(":logging"))
-    integTestImplementation(project(":persistent-cache"))
-    integTestImplementation(project(":launcher"))
-    integTestImplementation(project(":file-watching"))
+    integTestImplementation(project(":distribution-core:logging"))
+    integTestImplementation(project(":distribution-core:persistent-cache"))
+    integTestImplementation(project(":distribution-core:launcher"))
+    integTestImplementation(project(":distribution-core:file-watching"))
     integTestImplementation(libs.slf4jApi)
     integTestImplementation(libs.jetty)
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }
 
 tasks.register("soakTest") {

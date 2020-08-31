@@ -39,7 +39,7 @@ tasks.withType<Checkstyle>().configureEach {
     reports {
         xml.isEnabled = false
         html.isEnabled = true
-        html.stylesheet = resources.text.fromFile("config/xsl/checkstyle-custom.xsl")
+        html.stylesheet = :distribution-core:resources.text.fromFile("config/xsl/checkstyle-custom.xsl")
     }
 }
 // end::customize-checkstyle-report[]

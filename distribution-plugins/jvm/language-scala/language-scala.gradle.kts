@@ -3,20 +3,20 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":files"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":worker-processes"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":workers"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":language-java"))
-    implementation(project(":language-jvm"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:worker-processes"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:core:language-java"))
+    implementation(project(":distribution-plugins:core:language-jvm"))
 
     implementation(libs.groovy) // for 'Task.property(String propertyName) throws groovy.lang.MissingPropertyException'
     implementation(libs.ant)
@@ -24,28 +24,28 @@ dependencies {
     implementation(libs.guava)
     implementation(libs.inject)
 
-    testImplementation(project(":file-collections"))
-    testImplementation(project(":files"))
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":platform-base")))
-    testImplementation(testFixtures(project(":plugins")))
+    testImplementation(project(":distribution-core:file-collections"))
+    testImplementation(project(":distribution-core:files"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:platform-base")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:plugins")))
 
     integTestImplementation(libs.commonsLang)
     integTestImplementation(libs.ant)
 
-    testFixturesApi(testFixtures(project(":language-jvm")))
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":model-core"))
-    testFixturesImplementation(project(":platform-base"))
-    testFixturesImplementation(testFixtures(project(":language-jvm")))
+    testFixturesApi(testFixtures(project(":distribution-plugins:core:language-jvm")))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":distribution-core:model-core"))
+    testFixturesImplementation(project(":distribution-plugins:core:platform-base"))
+    testFixturesImplementation(testFixtures(project(":distribution-plugins:core:language-jvm")))
 
     compileOnly("org.scala-sbt:zinc_2.12:1.3.5")
 
-    testRuntimeOnly(project(":distributions-jvm")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-jvm")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-jvm"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-jvm"))
 }
 
 strictCompile {

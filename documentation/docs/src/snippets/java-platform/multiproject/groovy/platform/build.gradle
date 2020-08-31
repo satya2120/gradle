@@ -6,7 +6,7 @@ plugins {
 // tag::project-constraints[]
 dependencies {
     constraints {
-        api project(":core")
+        api project(":distribution-core:core")
         api project(":lib")
     }
 }

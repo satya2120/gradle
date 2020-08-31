@@ -34,7 +34,7 @@ signing {
 }
 // end::conditional-signing[]
 
-// Alternative to signing.required
+// Alter:distribution-core:native to signing.required
 // tag::only-if[]
 tasks.withType<Sign>().configureEach {
     onlyIf { project.extra["isReleaseVersion"] as Boolean }

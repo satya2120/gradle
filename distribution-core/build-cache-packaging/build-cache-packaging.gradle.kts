@@ -21,23 +21,23 @@ plugins {
 description = "Package build cache results"
 
 dependencies {
-    api(project(":build-cache-base"))
-    api(project(":snapshots"))
-    api(project(":hashing"))
-    api(project(":files"))
+    api(project(":distribution-core:build-cache-base"))
+    api(project(":distribution-core:snapshots"))
+    api(project(":distribution-core:hashing"))
+    api(project(":distribution-core:files"))
 
-    implementation(project(":base-annotations"))
+    implementation(project(":distribution-core:base-annotations"))
 
     implementation(libs.guava)
     implementation(libs.commonsCompress)
     implementation(libs.commonsIo)
 
-    testImplementation(project(":process-services"))
-    testImplementation(project(":file-collections"))
-    testImplementation(project(":resources"))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-core:file-collections"))
+    testImplementation(project(":distribution-core:resources"))
 
-    testImplementation(testFixtures(project(":base-services")))
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":snapshots")))
-    testImplementation(testFixtures(project(":core-api")))
+    testImplementation(testFixtures(project(":distribution-core:base-services")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:snapshots")))
+    testImplementation(testFixtures(project(":distribution-core:core-api")))
 }

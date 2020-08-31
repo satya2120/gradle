@@ -36,27 +36,27 @@ val integTestRuntimeResourcesClasspath by configurations.creating {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":file-collections"))
-    implementation(project(":ide"))
-    implementation(project(":language-scala"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":platform-play"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-plugins:jvm:ide"))
+    implementation(project(":distribution-plugins:jvm:language-scala"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:full:platform-play"))
 
     implementation(libs.groovy)
     implementation(libs.guava)
 
-    integTestImplementation(testFixtures(project(":platform-play")))
-    integTestImplementation(testFixtures(project(":ide")))
+    integTestImplementation(testFixtures(project(":distribution-plugins:full:platform-play")))
+    integTestImplementation(testFixtures(project(":distribution-plugins:jvm:ide")))
 
-    integTestRuntimeResources(testFixtures(project(":platform-play")))
+    integTestRuntimeResources(testFixtures(project(":distribution-plugins:full:platform-play")))
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }
 
 strictCompile {
@@ -64,9 +64,9 @@ strictCompile {
 }
 
 tasks.withType<IntegrationTest>().configureEach {
-    dependsOn(":platform-play:integTestPrepare")
+    dependsOn(":distribution-plugins:full:platform-play:integTestPrepare")
     // this is a workaround for which we need a better fix:
-    // it sets the platform play test fixtures resources directory in front
+    // it sets the platform play test fixtures :distribution-core:resources directory in front
     // of the classpath, so that we can find them when executing tests in
     // an exploded format, rather than finding them in the test fixtures jar
     classpath = integTestRuntimeResourcesClasspath + classpath

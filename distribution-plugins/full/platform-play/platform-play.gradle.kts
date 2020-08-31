@@ -23,30 +23,30 @@ val integTestRuntimeResourcesClasspath: Configuration by configurations.creating
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":files"))
-    implementation(project(":messaging"))
-    implementation(project(":process-services"))
-    implementation(project(":logging"))
-    implementation(project(":worker-processes"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":file-collections"))
-    implementation(project(":snapshots"))
-    implementation(project(":dependency-management"))
-    implementation(project(":workers"))
-    implementation(project(":plugins"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":language-jvm"))
-    implementation(project(":language-java"))
-    implementation(project(":language-scala"))
-    implementation(project(":testing-base"))
-    implementation(project(":testing-jvm"))
-    implementation(project(":javascript"))
-    implementation(project(":diagnostics"))
-    implementation(project(":reporting"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:worker-processes"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:snapshots"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:core:language-jvm"))
+    implementation(project(":distribution-plugins:core:language-java"))
+    implementation(project(":distribution-plugins:jvm:language-scala"))
+    implementation(project(":distribution-plugins:core:testing-base"))
+    implementation(project(":distribution-plugins:core:testing-jvm"))
+    implementation(project(":distribution-plugins:full:javascript"))
+    implementation(project(":distribution-plugins:core:diagnostics"))
+    implementation(project(":distribution-plugins:core:reporting"))
 
     implementation(libs.groovy)
     implementation(libs.slf4jApi)
@@ -54,39 +54,39 @@ dependencies {
     implementation(libs.commonsLang)
     implementation(libs.inject)
 
-    testImplementation(project(":native"))
-    testImplementation(project(":resources"))
-    testImplementation(project(":base-services-groovy"))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(project(":distribution-core:base-services-groovy"))
 
     integTestImplementation(libs.ant)
-    integTestRuntimeOnly(project(":composite-builds"))
-    integTestRuntimeOnly(project(":ide-play"))
-    integTestRuntimeOnly(project(":testing-junit-platform"))
+    integTestRuntimeOnly(project(":distribution-plugins:core:composite-builds"))
+    integTestRuntimeOnly(project(":distribution-plugins:full:ide-play"))
+    integTestRuntimeOnly(project(":distribution-plugins:core:testing-junit-platform"))
 
-    testFixturesApi(project(":platform-base")) {
+    testFixturesApi(project(":distribution-plugins:core:platform-base")) {
         because("Test fixtures export the Platform class")
     }
-    testFixturesApi(testFixtures(project(":core")))
-    testFixturesApi(testFixtures(project(":platform-native")))
-    testFixturesApi(testFixtures(project(":language-jvm")))
-    testFixturesApi(project(":internal-integ-testing"))
-    testFixturesImplementation(project(":process-services"))
+    testFixturesApi(testFixtures(project(":distribution-core:core")))
+    testFixturesApi(testFixtures(project(":distribution-plugins:native:platform-native")))
+    testFixturesApi(testFixtures(project(":distribution-plugins:core:language-jvm")))
+    testFixturesApi(project(":fixtures:internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:process-services"))
     testFixturesImplementation(libs.commonsIo)
     testFixturesImplementation(libs.commonsHttpclient)
     testFixturesImplementation(libs.slf4jApi)
-    testFixturesApi(testFixtures(project(":language-scala")))
-    testFixturesApi(testFixtures(project(":language-java")))
+    testFixturesApi(testFixtures(project(":distribution-plugins:jvm:language-scala")))
+    testFixturesApi(testFixtures(project(":distribution-plugins:core:language-java")))
 
-    testImplementation(testFixtures(project(":dependency-management")))
-    testImplementation(testFixtures(project(":diagnostics")))
-    testImplementation(testFixtures(project(":platform-base")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:dependency-management")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:diagnostics")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:platform-base")))
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestRuntimeResources(testFixtures(project(":platform-play")))
+    integTestRuntimeResources(testFixtures(project(":distribution-plugins:full:platform-play")))
 }
 
 strictCompile {
@@ -107,7 +107,7 @@ tasks.withType<IntegrationTest>().configureEach {
         dependsOn(integTestPrepare)
         exclude("org/gradle/play/prepare/**")
         // this is a workaround for which we need a better fix:
-        // it sets the platform play test fixtures resources directory in front
+        // it sets the platform play test fixtures :distribution-core:resources directory in front
         // of the classpath, so that we can find them when executing tests in
         // an exploded format, rather than finding them in the test fixtures jar
         classpath = integTestRuntimeResourcesClasspath + classpath

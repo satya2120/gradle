@@ -154,12 +154,12 @@ dependencies {
 open class LwjglRule: ComponentMetadataRule {
     data class NativeVariant(val os: String, val arch: String, val classifier: String)
 
-    private val nativeVariants = listOf(
-        NativeVariant(OperatingSystemFamily.LINUX,   "arm32",  "natives-linux-arm32"),
-        NativeVariant(OperatingSystemFamily.LINUX,   "arm64",  "natives-linux-arm64"),
-        NativeVariant(OperatingSystemFamily.WINDOWS, "x86",    "natives-windows-x86"),
-        NativeVariant(OperatingSystemFamily.WINDOWS, "x86-64", "natives-windows"),
-        NativeVariant(OperatingSystemFamily.MACOS,   "x86-64", "natives-macos")
+    private val :distribution-core:nativeVariants = listOf(
+        NativeVariant(OperatingSystemFamily.LINUX,   "arm32",  ":distribution-core:natives-linux-arm32"),
+        NativeVariant(OperatingSystemFamily.LINUX,   "arm64",  ":distribution-core:natives-linux-arm64"),
+        NativeVariant(OperatingSystemFamily.WINDOWS, "x86",    ":distribution-core:natives-windows-x86"),
+        NativeVariant(OperatingSystemFamily.WINDOWS, "x86-64", ":distribution-core:natives-windows"),
+        NativeVariant(OperatingSystemFamily.MACOS,   "x86-64", ":distribution-core:natives-macos")
     )
 
     @Inject open fun getObjects(): ObjectFactory = throw UnsupportedOperationException()
@@ -171,7 +171,7 @@ open class LwjglRule: ComponentMetadataRule {
                 attributes.attribute(MachineArchitecture.ARCHITECTURE_ATTRIBUTE, getObjects().named("none"))
             }
         }
-        nativeVariants.forEach { variantDefinition ->
+        :distribution-core:nativeVariants.forEach { variantDefinition ->
             context.details.addVariant("${variantDefinition.classifier}-runtime", "runtime") {
                 attributes {
                     attributes.attribute(OperatingSystemFamily.OPERATING_SYSTEM_ATTRIBUTE, getObjects().named(variantDefinition.os))

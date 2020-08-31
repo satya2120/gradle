@@ -3,13 +3,13 @@ plugins {
 }
 
 dependencies {
-    coreRuntimeOnly(platform(project(":core-platform")))
+    coreRuntimeOnly(platform(project(":distribution-setup:core-platform")))
 
-    pluginsRuntimeOnly(platform(project(":distributions-basics")))
+    pluginsRuntimeOnly(platform(project(":distribution-setup:distributions-basics")))
 
-    pluginsRuntimeOnly(project(":scala"))
-    pluginsRuntimeOnly(project(":ear"))
-    pluginsRuntimeOnly(project(":code-quality"))
-    pluginsRuntimeOnly(project(":jacoco"))
-    pluginsRuntimeOnly(project(":ide"))
+    pluginsRuntimeOnly(project(":distribution-plugins:jvm:scala"))
+    pluginsRuntimeOnly(project(":distribution-plugins:jvm:ear"))
+    pluginsRuntimeOnly(project(":distribution-plugins:jvm:code-quality"))
+    pluginsRuntimeOnly(project(":distribution-plugins:jvm:jacoco"))
+    pluginsRuntimeOnly(project(":distribution-plugins:jvm:ide"))
 }

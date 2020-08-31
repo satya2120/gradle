@@ -19,25 +19,25 @@ plugins {
 }
 
 dependencies {
-    api(project(":base-services")) // leaks BuildOperationNotificationListener on API
+    api(project(":distribution-core:base-services")) // leaks BuildOperationNotificationListener on API
 
     implementation(libs.jsr305)
     implementation(libs.inject)
-    implementation(project(":logging"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":launcher"))
-    implementation(project(":snapshots"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:launcher"))
+    implementation(project(":distribution-core:snapshots"))
 
-    integTestImplementation(project(":internal-testing"))
-    integTestImplementation(project(":internal-integ-testing"))
+    integTestImplementation(project(":fixtures:internal-testing"))
+    integTestImplementation(project(":fixtures:internal-integ-testing"))
 
     // Dependencies of the integ test fixtures
-    integTestImplementation(project(":build-option"))
-    integTestImplementation(project(":messaging"))
-    integTestImplementation(project(":persistent-cache"))
-    integTestImplementation(project(":native"))
+    integTestImplementation(project(":distribution-core:build-option"))
+    integTestImplementation(project(":distribution-core:messaging"))
+    integTestImplementation(project(":distribution-core:persistent-cache"))
+    integTestImplementation(project(":distribution-core:native"))
     integTestImplementation(libs.guava)
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }

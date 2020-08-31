@@ -32,51 +32,51 @@ shadedJar {
 dependencies {
     shadedImplementation(libs.slf4jApi)
 
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":logging"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":wrapper"))
-    implementation(project(":persistent-cache"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:wrapper"))
+    implementation(project(":distribution-core:persistent-cache"))
 
     implementation(libs.guava)
 
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":core"))
-    testFixturesImplementation(project(":model-core"))
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":base-services-groovy"))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":distribution-core:core"))
+    testFixturesImplementation(project(":distribution-core:model-core"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":distribution-core:base-services-groovy"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
     testFixturesImplementation(libs.commonsIo)
     testFixturesImplementation(libs.slf4jApi)
 
-    integTestImplementation(project(":jvm-services"))
-    integTestImplementation(project(":persistent-cache"))
+    integTestImplementation(project(":distribution-core:jvm-services"))
+    integTestImplementation(project(":distribution-core:persistent-cache"))
 
-    crossVersionTestImplementation(project(":jvm-services"))
+    crossVersionTestImplementation(project(":distribution-core:jvm-services"))
     crossVersionTestImplementation(libs.jetty)
     crossVersionTestImplementation(libs.commonsIo)
     crossVersionTestRuntimeOnly(libs.cglib) {
         because("BuildFinishedCrossVersionSpec classpath inference requires cglib enhancer")
     }
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":logging")))
-    testImplementation(testFixtures(project(":dependency-management")))
-    testImplementation(testFixtures(project(":ide")))
-    testImplementation(testFixtures(project(":workers")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:logging")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:dependency-management")))
+    testImplementation(testFixtures(project(":distribution-plugins:jvm:ide")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:workers")))
 
-    integTestNormalizedDistribution(project(":distributions-full")) {
+    integTestNormalizedDistribution(project(":distribution-setup:distributions-full")) {
         because("Used by ToolingApiRemoteIntegrationTest")
     }
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
     integTestLocalRepository(project(path)) {
         because("ToolingApiResolveIntegrationTest and ToolingApiClasspathIntegrationTest use the Tooling API Jar")
     }
 
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-full"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
     crossVersionTestLocalRepository(project(path)) {
         because("ToolingApiVersionSpecification uses the Tooling API Jar")
     }

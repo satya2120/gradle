@@ -184,7 +184,7 @@ fun Project.buildTimestampFromBuildReceipt(): Provider<String> =
 
 fun isRunningInstallTask() =
     listOf("install", "installAll")
-        .flatMap { listOf(":distributions-full:$it", "distributions-full:$it", it) }
+        .flatMap { listOf(":distribution-setup:distributions-full:$it", "distribution-setup:distributions-full:$it", it) }
         .any(gradle.startParameter.taskNames::contains)
 
 /**

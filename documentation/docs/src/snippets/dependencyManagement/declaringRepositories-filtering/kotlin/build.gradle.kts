@@ -35,7 +35,7 @@ repositories {
 }
 // end::exclusive-repository-filter[]
 
-// tag::repository-snapshots[]
+// tag::repository-:distribution-core:snapshots[]
 repositories {
     maven {
         url = uri("https://repo.mycompany.com/releases")
@@ -44,13 +44,13 @@ repositories {
         }
     }
     maven {
-        url = uri("https://repo.mycompany.com/snapshots")
+        url = uri("https://repo.mycompany.com/:distribution-core:snapshots")
         mavenContent {
-            snapshotsOnly()
+            :distribution-core:snapshotsOnly()
         }
     }
 }
-// end::repository-snapshots[]
+// end::repository-:distribution-core:snapshots[]
 
 val libs by configurations.creating
 

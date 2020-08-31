@@ -3,19 +3,19 @@ plugins {
 }
 
 dependencies {
-    coreRuntimeOnly(platform(project(":core-platform")))
+    coreRuntimeOnly(platform(project(":distribution-setup:core-platform")))
 
-    pluginsRuntimeOnly(platform(project(":distributions-core")))
+    pluginsRuntimeOnly(platform(project(":distribution-setup:distributions-core")))
 
-    pluginsRuntimeOnly(project(":resources-http"))
-    pluginsRuntimeOnly(project(":resources-sftp"))
-    pluginsRuntimeOnly(project(":resources-s3"))
-    pluginsRuntimeOnly(project(":resources-gcs"))
-    pluginsRuntimeOnly(project(":resources-http"))
-    pluginsRuntimeOnly(project(":build-cache-http"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:resources-http"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:resources-sftp"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:resources-s3"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:resources-gcs"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:resources-http"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:build-cache-http"))
 
-    pluginsRuntimeOnly(project(":tooling-api-builders"))
-    pluginsRuntimeOnly(project(":kotlin-dsl-tooling-builders"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:tooling-api-builders"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:kotlin-dsl-tooling-builders"))
 
-    pluginsRuntimeOnly(project(":test-kit"))
+    pluginsRuntimeOnly(project(":distribution-plugins:basics:test-kit"))
 }

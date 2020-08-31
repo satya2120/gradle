@@ -18,23 +18,23 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":native"))
-    implementation(project(":files"))
-    implementation(project(":resources"))
-    implementation(project(":logging"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-core:logging"))
 
     implementation(libs.slf4jApi)
     implementation(libs.guava)
     implementation(libs.commonsIo)
     implementation(libs.commonsLang)
 
-    testImplementation(project(":core-api"))
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(project(":distribution-core:core-api"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("DefaultPersistentDirectoryCacheTest instantiates DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }

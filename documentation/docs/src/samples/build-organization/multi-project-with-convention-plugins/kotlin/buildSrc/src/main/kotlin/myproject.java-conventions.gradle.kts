@@ -14,13 +14,13 @@ plugins {
 // Projects should use JCenter for external dependencies
 // This could be the organization's private repository
 repositories {
-    jcenter() 
+    jcenter()
 }
 
 // Use the Checkstyle rules provided by the convention plugin
 // Do not allow any warnings
 checkstyle {
-    config = resources.text.fromString(com.example.CheckstyleUtil.getCheckstyleConfig("/checkstyle.xml"))
+    config = :distribution-core:resources.text.fromString(com.example.CheckstyleUtil.getCheckstyleConfig("/checkstyle.xml"))
     maxWarnings = 0
 }
 

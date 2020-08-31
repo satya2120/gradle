@@ -3,21 +3,21 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":worker-processes"))
-    implementation(project(":file-collections"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":jvm-services"))
-    implementation(project(":workers"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":language-jvm"))
-    implementation(project(":language-java"))
-    implementation(project(":files"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:worker-processes"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:jvm-services"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:core:language-jvm"))
+    implementation(project(":distribution-plugins:core:language-java"))
+    implementation(project(":distribution-core:files"))
 
     implementation(libs.slf4jApi)
     implementation(libs.groovy)
@@ -25,21 +25,21 @@ dependencies {
     implementation(libs.asm)
     implementation(libs.inject)
 
-    testImplementation(project(":base-services-groovy"))
-    testImplementation(project(":internal-testing"))
-    testImplementation(project(":resources"))
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(project(":distribution-core:base-services-groovy"))
+    testImplementation(project(":fixtures:internal-testing"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testFixturesApi(testFixtures(project(":language-jvm")))
-    testFixturesImplementation(project(":core"))
-    testFixturesImplementation(project(":base-services"))
+    testFixturesApi(testFixtures(project(":distribution-plugins:core:language-jvm")))
+    testFixturesImplementation(project(":distribution-core:core"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
 
     integTestImplementation(libs.commonsLang)
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 classycle {

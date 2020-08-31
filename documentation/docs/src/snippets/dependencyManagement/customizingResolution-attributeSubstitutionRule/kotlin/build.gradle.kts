@@ -23,7 +23,7 @@ configurations.all {
 }
 // end::substitution_rule[]
 
-// tag::substitution_rule_alternative[]
+// tag::substitution_rule_alter:distribution-core:native[]
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         substitute(variant(module("com.google.guava:guava:28.2-jre")) {
@@ -33,7 +33,7 @@ configurations.all {
         }).using(module("com.google.guava:guava:28.2-jre"))
     }
 }
-// end::substitution_rule_alternative[]
+// end::substitution_rule_alter:distribution-core:native[]
 
 tasks.register("resolve") {
     inputs.files(configurations.runtimeClasspath)

@@ -18,13 +18,13 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":base-services-groovy"))
-    implementation(project(":core-api"))
-    implementation(project(":files"))
-    implementation(project(":model-core"))
-    implementation(project(":logging"))
-    implementation(project(":native"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:base-services-groovy"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:native"))
 
     implementation(libs.slf4jApi)
     implementation(libs.groovy)
@@ -33,23 +33,23 @@ dependencies {
     implementation(libs.commonsLang)
     implementation(libs.inject)
 
-    testImplementation(project(":process-services"))
-    testImplementation(project(":resources"))
-    testImplementation(project(":snapshots"))
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":core-api")))
-    testImplementation(testFixtures(project(":model-core")))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(project(":distribution-core:snapshots"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:core-api")))
+    testImplementation(testFixtures(project(":distribution-core:model-core")))
 
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":native"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":distribution-core:native"))
 
     testFixturesImplementation(libs.guava)
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 strictCompile {
@@ -57,6 +57,6 @@ strictCompile {
 }
 
 classycle {
-    // Some cycles have been inherited from the time these classes were in :core
+    // Some cycles have been inherited from the time these classes were in :distribution-core:core
     excludePatterns.set(listOf("org/gradle/api/internal/file/collections/"))
 }

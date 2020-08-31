@@ -31,7 +31,7 @@ repositories {
 tasks {
     compileKotlin2Js {
         kotlinOptions {
-            outputFile = "${sourceSets.main.get().output.resourcesDir}/output.js"
+            outputFile = "${sourceSets.main.get().output.:distribution-core:resourcesDir}/output.js"
             sourceMap = true
         }
     }

@@ -5,13 +5,13 @@ plugins {
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":messaging"))
-    implementation(project(":native"))
-    implementation(project(":process-services"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:process-services"))
 
     implementation(libs.slf4jApi)
 
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 }

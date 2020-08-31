@@ -22,23 +22,23 @@ plugins {
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":native"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":file-collections"))
-    implementation(project(":jvm-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":dependency-management"))
-    implementation(project(":reporting"))
-    implementation(project(":diagnostics"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":language-java"))
-    implementation(project(":testing-base"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:jvm-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:reporting"))
+    implementation(project(":distribution-plugins:core:diagnostics"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:core:language-java"))
+    implementation(project(":distribution-plugins:core:testing-base"))
 
     implementation(libs.slf4jApi)
     implementation(libs.groovy)
@@ -51,21 +51,21 @@ dependencies {
     implementation(libs.inject)
     implementation(libs.bsh)
 
-    testImplementation(project(":base-services-groovy"))
+    testImplementation(project(":distribution-core:base-services-groovy"))
     testImplementation(libs.guice) {
         because("This is for TestNG")
     }
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":testing-base")))
-    testImplementation(testFixtures(project(":diagnostics")))
-    testImplementation(testFixtures(project(":messaging")))
-    testImplementation(testFixtures(project(":base-services")))
-    testImplementation(testFixtures(project(":platform-native")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:testing-base")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:diagnostics")))
+    testImplementation(testFixtures(project(":distribution-core:messaging")))
+    testImplementation(testFixtures(project(":distribution-core:base-services")))
+    testImplementation(testFixtures(project(":distribution-plugins:native:platform-native")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-jvm"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-jvm"))
 }
 
 strictCompile {

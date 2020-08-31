@@ -40,7 +40,7 @@
                 <td>distributionUrl</td>
                 <td><literal>"http\://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip"</literal>
                     (or
-                    <literal>"http\://services.gradle.org/distributions-snapshots/gradle-${gradleVersion}-bin.zip"</literal>
+                    <literal>"http\://services.gradle.org/distributions-:distribution-core:snapshots/gradle-${gradleVersion}-bin.zip"</literal>
                     for snapshot versions).
                 </td>
             </tr>

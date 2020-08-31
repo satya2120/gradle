@@ -21,18 +21,18 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":file-collections"))
-    implementation(project(":resources"))
-    implementation(project(":base-services-groovy"))
-    implementation(project(":dependency-management"))
-    implementation(project(":plugins"))
-    implementation(project(":plugin-use"))
-    implementation(project(":publish"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-core:base-services-groovy"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:plugin-use"))
+    implementation(project(":distribution-plugins:core:publish"))
 
     implementation(libs.slf4jApi)
     implementation(libs.groovy)
@@ -49,30 +49,30 @@ dependencies {
     implementation(libs.plexusContainer)
     implementation(libs.aetherConnector)
 
-    testImplementation(project(":native"))
-    testImplementation(project(":process-services"))
-    testImplementation(project(":snapshots"))
-    testImplementation(project(":resources-http"))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-core:snapshots"))
+    testImplementation(project(":distribution-plugins:basics:resources-http"))
     testImplementation(libs.xmlunit)
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":model-core")))
-    testImplementation(testFixtures(project(":dependency-management")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:model-core")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:dependency-management")))
 
-    integTestImplementation(project(":ear"))
+    integTestImplementation(project(":distribution-plugins:jvm:ear"))
     integTestImplementation(libs.jetty)
 
-    testFixturesApi(project(":base-services")) {
+    testFixturesApi(project(":distribution-core:base-services")) {
         because("Test fixtures export the Action class")
     }
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":internal-integ-testing"))
-    testFixturesImplementation(project(":dependency-management"))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-plugins:core:dependency-management"))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-jvm"))
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-jvm"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 strictCompile {

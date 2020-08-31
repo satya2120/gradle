@@ -19,33 +19,33 @@ plugins {
     id("gradlebuild.publish-public-libraries")
 }
 
-description = "Tools to take immutable, comparable snapshots of files and other things"
+description = "Tools to take immutable, comparable :distribution-core:snapshots of files and other things"
 
 dependencies {
-    api(project(":files"))
-    api(project(":hashing"))
+    api(project(":distribution-core:files"))
+    api(project(":distribution-core:hashing"))
 
-    implementation(project(":base-annotations"))
+    implementation(project(":distribution-core:base-annotations"))
 
     implementation(libs.guava)
     implementation(libs.slf4jApi)
 
-    testImplementation(project(":process-services"))
-    testImplementation(project(":resources"))
-    testImplementation(project(":native"))
-    testImplementation(project(":persistent-cache"))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:persistent-cache"))
     testImplementation(libs.ant)
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":core-api")))
-    testImplementation(testFixtures(project(":base-services")))
-    testImplementation(testFixtures(project(":file-collections")))
-    testImplementation(testFixtures(project(":messaging")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:core-api")))
+    testImplementation(testFixtures(project(":distribution-core:base-services")))
+    testImplementation(testFixtures(project(":distribution-core:file-collections")))
+    testImplementation(testFixtures(project(":distribution-core:messaging")))
 
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":file-collections"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":distribution-core:file-collections"))
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 afterEvaluate {

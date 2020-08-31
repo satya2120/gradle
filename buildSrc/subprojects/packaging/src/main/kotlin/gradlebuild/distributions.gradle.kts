@@ -74,7 +74,7 @@ pluginsRuntimeOnly.description = "To define dependencies to the Gradle modules t
 
 coreRuntimeOnly.withDependencies {
     // use 'withDependencies' to not attempt to find platform project during script compilation
-    add(project.dependencies.create(dependencies.platform(project(":distributions-dependencies"))))
+    add(project.dependencies.create(dependencies.platform(project(":distribution-setup:distributions-dependencies"))))
 }
 
 // Configurations to resolve dependencies
@@ -82,8 +82,8 @@ val runtimeClasspath by libraryResolver(listOf(coreRuntimeOnly, pluginsRuntimeOn
 runtimeClasspath.description = "Resolves to all Jars that need to be in the distribution including all transitive dependencies"
 val coreRuntimeClasspath by libraryResolver(listOf(coreRuntimeOnly))
 coreRuntimeClasspath.description = "Resolves to all Jars, including transitives, that make up the core of the distribution (needed to decide if a Jar goes into 'plugins' or not)"
-val gradleScriptPath by startScriptResolver(":launcher")
-gradleScriptPath.description = "Resolves to the Gradle start scripts (bin/*) - automatically adds dependency to the :launcher project"
+val gradleScriptPath by startScriptResolver(":distribution-core:launcher")
+gradleScriptPath.description = "Resolves to the Gradle start scripts (bin/*) - automatically adds dependency to the :distribution-core:launcher project"
 val sourcesPath by sourcesResolver(listOf(coreRuntimeOnly, pluginsRuntimeOnly))
 sourcesPath.description = "Resolves the source code of all Gradle modules Jars (required for the All distribution)"
 val docsPath by docsResolver(":docs")

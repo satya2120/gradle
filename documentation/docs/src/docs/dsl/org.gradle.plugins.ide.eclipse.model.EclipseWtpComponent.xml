@@ -35,7 +35,7 @@
                 <td><literal>eclipse.project.name</literal></td>
             </tr>
             <tr>
-                <td>resources</td>
+                <td>:distribution-core:resources</td>
                 <td><literal>[deployPath: '/', sourcePath: project.webAppDirName]</literal></td>
                 <td><literal>[]</literal></td>
             </tr>

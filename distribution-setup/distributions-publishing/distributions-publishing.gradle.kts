@@ -3,9 +3,9 @@ plugins {
 }
 
 dependencies {
-    coreRuntimeOnly(platform(project(":core-platform")))
+    coreRuntimeOnly(platform(project(":distribution-setup:core-platform")))
 
-    pluginsRuntimeOnly(platform(project(":distributions-basics")))
+    pluginsRuntimeOnly(platform(project(":distribution-setup:distributions-basics")))
 
-    pluginsRuntimeOnly(project(":signing"))
+    pluginsRuntimeOnly(project(":distribution-plugins:publishing:signing"))
 }

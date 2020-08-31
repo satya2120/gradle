@@ -21,27 +21,27 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":native"))
-    implementation(project(":logging"))
-    implementation(project(":cli"))
-    implementation(project(":process-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":base-services-groovy"))
-    implementation(project(":files"))
-    implementation(project(":file-collections"))
-    implementation(project(":resources"))
-    implementation(project(":build-cache"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":dependency-management"))
-    implementation(project(":configuration-cache"))
-    implementation(project(":jvm-services"))
-    implementation(project(":launcher"))
-    implementation(project(":internal-testing"))
-    implementation(project(":build-events"))
-    implementation(project(":build-option"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:cli"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:base-services-groovy"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-core:build-cache"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:configuration-cache"))
+    implementation(project(":distribution-core:jvm-services"))
+    implementation(project(":distribution-core:launcher"))
+    implementation(project(":fixtures:internal-testing"))
+    implementation(project(":distribution-core:build-events"))
+    implementation(project(":distribution-core:build-option"))
 
     implementation(libs.groovy)
     implementation(libs.junit)
@@ -83,12 +83,12 @@ dependencies {
         exclude(module = "groovy-all")
         exclude(module = "slf4j-simple")
     }
-    implementation(testFixtures(project(":core")))
+    implementation(testFixtures(project(":distribution-core:core")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 classycle {

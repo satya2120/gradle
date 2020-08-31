@@ -1,11 +1,11 @@
 // Define conventions for service projects this organization.
 // Service projects need to use the organization's Java conventions and pass some additional checks
 
-// tag::plugins[]
+// tag::distribution-plugins:core:plugins[]
 plugins {
     id("com.myorg.java-conventions")
 }
-// end::plugins[]
+// end::distribution-plugins:core:plugins[]
 
 val integrationTest by sourceSets.creating
 

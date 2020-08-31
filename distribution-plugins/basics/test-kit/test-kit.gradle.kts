@@ -22,27 +22,27 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":wrapper"))
-    implementation(project(":tooling-api"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:wrapper"))
+    implementation(project(":distribution-core:tooling-api"))
     implementation(libs.commonsIo)
 
     testImplementation(libs.guava)
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    integTestImplementation(project(":native"))
-    integTestImplementation(project(":logging"))
-    integTestImplementation(project(":launcher"))
-    integTestImplementation(project(":build-option"))
-    integTestImplementation(project(":jvm-services"))
+    integTestImplementation(project(":distribution-core:native"))
+    integTestImplementation(project(":distribution-core:logging"))
+    integTestImplementation(project(":distribution-core:launcher"))
+    integTestImplementation(project(":distribution-core:build-option"))
+    integTestImplementation(project(":distribution-core:jvm-services"))
     integTestImplementation(libs.slf4jApi)
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
 }
 
 val generateTestKitPackageList by tasks.registering(PackageListGenerator::class) {

@@ -5,7 +5,7 @@ task myCopy(type: Copy)
 // tag::configure[]
 // Configure task using Groovy dynamic task configuration block
 myCopy {
-   from 'resources'
+   from ':distribution-core:resources'
    into 'target'
 }
 myCopy.include('**/*.txt', '**/*.xml', '**/*.properties')

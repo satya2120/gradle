@@ -20,12 +20,12 @@ plugins {
 description = "Shared classes for projects requiring GPG support"
 
 dependencies {
-    api(project(":core-api"))
-    api(project(":resources"))
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":resources-http"))
+    api(project(":distribution-core:core-api"))
+    api(project(":distribution-core:resources"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-plugins:basics:resources-http"))
     implementation(libs.guava)
 
     api(libs.bouncycastlePgp)
@@ -34,15 +34,15 @@ dependencies {
         because("Project.exec() depends on Groovy")
     }
 
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testFixturesImplementation(project(":base-services"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
     testFixturesImplementation(libs.slf4jApi)
     testFixturesImplementation(libs.jetty)
-    testFixturesImplementation(testFixtures(project(":core")))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(testFixtures(project(":distribution-core:core")))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
 }

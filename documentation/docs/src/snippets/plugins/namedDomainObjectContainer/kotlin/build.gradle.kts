@@ -4,7 +4,7 @@ plugins {
 
 download {
     // Can use a block to configure the container contents
-    resources {
+    :distribution-core:resources {
         register("gradle") {
             uri = uri("https://gradle.org")
         }

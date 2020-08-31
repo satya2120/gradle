@@ -22,28 +22,28 @@ plugins {
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    implementation(project(":cli"))
+    implementation(project(":distribution-core:cli"))
 
-    testImplementation(project(":base-services"))
-    testImplementation(project(":native"))
+    testImplementation(project(":distribution-core:base-services"))
+    testImplementation(project(":distribution-core:native"))
     testImplementation(libs.ant)
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    integTestImplementation(project(":logging"))
-    integTestImplementation(project(":core-api"))
+    integTestImplementation(project(":distribution-core:logging"))
+    integTestImplementation(project(":distribution-core:core-api"))
     integTestImplementation(libs.commonsIo)
     integTestImplementation(libs.littleproxy)
     integTestImplementation(libs.jetty)
 
-    crossVersionTestImplementation(project(":logging"))
-    crossVersionTestImplementation(project(":persistent-cache"))
-    crossVersionTestImplementation(project(":launcher"))
+    crossVersionTestImplementation(project(":distribution-core:logging"))
+    crossVersionTestImplementation(project(":distribution-core:persistent-cache"))
+    crossVersionTestImplementation(project(":distribution-core:launcher"))
 
-    integTestNormalizedDistribution(project(":distributions-full"))
-    crossVersionTestNormalizedDistribution(project(":distributions-full"))
+    integTestNormalizedDistribution(project(":distribution-setup:distributions-full"))
+    crossVersionTestNormalizedDistribution(project(":distribution-setup:distributions-full"))
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }
 
 val executableJar by tasks.registering(Jar::class) {

@@ -16,6 +16,6 @@ pluginManagement {
 
 include("java-app")
 include("kotlin-app")
-include("native-app")
+include(":distribution-core:native-app")
 include("android-app")
 include("android-kotlin-app")

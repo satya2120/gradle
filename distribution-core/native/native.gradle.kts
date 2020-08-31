@@ -3,14 +3,14 @@ plugins {
     id("gradlebuild.jmh")
 }
 
-description = "This project contains various native operating system integration utilities"
+description = "This project contains various :distribution-core:native operating system integration utilities"
 
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    api(project(":files"))
+    api(project(":distribution-core:files"))
 
-    implementation(project(":base-services"))
+    implementation(project(":distribution-core:base-services"))
 
     implementation(libs.nativePlatform)
     implementation(libs.nativePlatformFileEvents)
@@ -19,10 +19,10 @@ dependencies {
     implementation(libs.commonsIo)
     implementation(libs.jansi)
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":logging")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:logging")))
 
-    jmhImplementation(project(":files"))
+    jmhImplementation(project(":distribution-core:files"))
 }
 
 jmh {
@@ -46,9 +46,9 @@ val convertCSV by tasks.registering {
     outputs.file(outputFile)
     doLast {
         val benchToScenarioName = mapOf(
-            "org.gradle.internal.nativeintegration.filesystem.FileMetadataAccessorBenchmark.stat_existing" to "Existing",
-            "org.gradle.internal.nativeintegration.filesystem.FileMetadataAccessorBenchmark.stat_directory" to "Directory",
-            "org.gradle.internal.nativeintegration.filesystem.FileMetadataAccessorBenchmark.stat_missing_file" to "Missing")
+            "org.gradle.internal.:distribution-core:nativeintegration.filesystem.FileMetadataAccessorBenchmark.stat_existing" to "Existing",
+            "org.gradle.internal.:distribution-core:nativeintegration.filesystem.FileMetadataAccessorBenchmark.stat_directory" to "Directory",
+            "org.gradle.internal.:distribution-core:nativeintegration.filesystem.FileMetadataAccessorBenchmark.stat_missing_file" to "Missing")
         var first = true
         val benchmarks = mutableMapOf<String, MutableList<Pair<String, Int>>>().withDefault { mutableListOf() }
         inputFile.forEachLine { line ->

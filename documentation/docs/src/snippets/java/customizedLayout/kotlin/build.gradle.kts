@@ -16,8 +16,8 @@ sourceSets {
         java {
             setSrcDirs(listOf("src/java"))
         }
-        resources {
-            setSrcDirs(listOf("src/resources"))
+        :distribution-core:resources {
+            setSrcDirs(listOf("src/:distribution-core:resources"))
         }
     }
 // end::define-main[]
@@ -25,8 +25,8 @@ sourceSets {
         java {
             srcDir("test/java")
         }
-        resources {
-            srcDir("test/resources")
+        :distribution-core:resources {
+            srcDir("test/:distribution-core:resources")
         }
     }
 // tag::define-main[]

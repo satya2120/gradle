@@ -59,12 +59,12 @@
             <tr>
                 <td>resourceDirs</td>
                 <td><literal>[]</literal></td>
-                <td>resource dirs from <literal>project.sourceSets.main.resources</literal></td>
+                <td>resource dirs from <literal>project.sourceSets.main.:distribution-core:resources</literal></td>
             </tr>
             <tr>
                 <td>testResourceDirs</td>
                 <td><literal>[]</literal></td>
-                <td>resource dirs from <literal>project.sourceSets.test.resources</literal></td>
+                <td>resource dirs from <literal>project.sourceSets.test.:distribution-core:resources</literal></td>
             </tr>
 
 

@@ -18,16 +18,16 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":logging"))
-    implementation(project(":files"))
-    implementation(project(":file-collections"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":core-api"))
-    implementation(project(":core"))
-    implementation(project(":resources"))
-    implementation(project(":dependency-management"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
 
     implementation(libs.guava)
     implementation(libs.inject)
@@ -35,13 +35,13 @@ dependencies {
     implementation(libs.commonsHttpclient)
     implementation(libs.jsch)
 
-    testImplementation(project(":native"))
-    testImplementation(project(":snapshots"))
-    testImplementation(project(":process-services"))
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:snapshots"))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
 
     testFixturesImplementation(libs.jgit)
     testFixturesImplementation(libs.commonsIo)
@@ -49,6 +49,6 @@ dependencies {
     testFixturesImplementation(libs.jsch)
     testFixturesImplementation(libs.guava)
 
-    integTestImplementation(project(":launcher"))
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))
+    integTestImplementation(project(":distribution-core:launcher"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
 }

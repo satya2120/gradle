@@ -6,10 +6,10 @@ plugins {
 }
 
 dependencies {
-    integTestImplementation(project(":base-services"))
-    integTestImplementation(project(":core-api"))
-    integTestImplementation(project(":process-services"))
-    integTestImplementation(project(":persistent-cache"))
+    integTestImplementation(project(":distribution-core:base-services"))
+    integTestImplementation(project(":distribution-core:core-api"))
+    integTestImplementation(project(":distribution-core:process-services"))
+    integTestImplementation(project(":distribution-core:persistent-cache"))
     integTestImplementation(libs.groovy)
     integTestImplementation(libs.slf4jApi)
     integTestImplementation(libs.guava)
@@ -18,9 +18,9 @@ dependencies {
         exclude(group = "org.codehaus.groovy", module = "groovy-all")
         exclude(module = "slf4j-simple")
     }
-    integTestImplementation(testFixtures(project(":core")))
+    integTestImplementation(testFixtures(project(":distribution-core:core")))
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }
 
 testFilesCleanup {

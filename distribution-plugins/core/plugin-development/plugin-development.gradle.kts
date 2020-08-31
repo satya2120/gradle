@@ -22,28 +22,28 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":files"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":execution"))
-    implementation(project(":core"))
-    implementation(project(":dependency-management"))
-    implementation(project(":maven"))
-    implementation(project(":ivy"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":reporting"))
-    implementation(project(":testing-base"))
-    implementation(project(":testing-jvm"))
-    implementation(project(":plugins"))
-    implementation(project(":plugin-use"))
-    implementation(project(":publish"))
-    implementation(project(":messaging"))
-    implementation(project(":workers"))
-    implementation(project(":model-groovy"))
-    implementation(project(":resources"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:execution"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:maven"))
+    implementation(project(":distribution-plugins:core:ivy"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:core:reporting"))
+    implementation(project(":distribution-plugins:core:testing-base"))
+    implementation(project(":distribution-plugins:core:testing-jvm"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:plugin-use"))
+    implementation(project(":distribution-plugins:core:publish"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-core:model-groovy"))
+    implementation(project(":distribution-core:resources"))
 
     implementation(libs.slf4jApi)
     implementation(libs.groovy)
@@ -52,22 +52,22 @@ dependencies {
     implementation(libs.inject)
     implementation(libs.asm)
 
-    testImplementation(project(":file-collections"))
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":logging")))
+    testImplementation(project(":distribution-core:file-collections"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:logging")))
 
-    integTestImplementation(project(":base-services-groovy"))
+    integTestImplementation(project(":distribution-core:base-services-groovy"))
     integTestImplementation(libs.jetbrainsAnnotations)
 
-    integTestLocalRepository(project(":tooling-api")) {
+    integTestLocalRepository(project(":distribution-core:tooling-api")) {
         because("Required by GradleImplDepsCompatibilityIntegrationTest")
     }
 
-    testRuntimeOnly(project(":distributions-basics")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-basics")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-basics"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
 }
 
 testFilesCleanup {

@@ -1,13 +1,13 @@
 // Define Java Library conventions for this organization.
 // Projects need to use the organization's Java conventions and publish using Maven Publish
 
-// tag::plugins[]
+// tag::distribution-plugins:core:plugins[]
 plugins {
     id 'java-library'
     id 'maven-publish'
     id 'myproject.java-conventions'
 }
-// end::plugins[]
+// end::distribution-plugins:core:plugins[]
 
 // Projects have the 'com.example' group by convention
 group = 'com.example'

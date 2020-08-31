@@ -3,20 +3,20 @@ plugins {
 }
 
 dependencies {
-    integTestImplementation(project(":internal-testing"))
-    integTestImplementation(project(":base-services"))
-    integTestImplementation(project(":logging"))
-    integTestImplementation(project(":core-api"))
+    integTestImplementation(project(":fixtures:internal-testing"))
+    integTestImplementation(project(":distribution-core:base-services"))
+    integTestImplementation(project(":distribution-core:logging"))
+    integTestImplementation(project(":distribution-core:core-api"))
     integTestImplementation(libs.guava)
     integTestImplementation(libs.commonsIo)
     integTestImplementation(libs.ant)
 
-    integTestBinDistribution(project(":distributions-full"))
-    integTestAllDistribution(project(":distributions-full"))
-    integTestDocsDistribution(project(":distributions-full"))
-    integTestSrcDistribution(project(":distributions-full"))
+    integTestBinDistribution(project(":distribution-setup:distributions-full"))
+    integTestAllDistribution(project(":distribution-setup:distributions-full"))
+    integTestDocsDistribution(project(":distribution-setup:distributions-full"))
+    integTestSrcDistribution(project(":distribution-setup:distributions-full"))
 
-    integTestDistributionRuntimeOnly(project(":distributions-full"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full"))
 }
 
 tasks.forkingIntegTest.configure {

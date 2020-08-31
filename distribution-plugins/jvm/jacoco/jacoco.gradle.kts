@@ -18,18 +18,18 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":platform-base"))
-    implementation(project(":testing-base"))
-    implementation(project(":testing-jvm"))
-    implementation(project(":plugins"))
-    implementation(project(":reporting"))
-    implementation(project(":file-collections"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:testing-base"))
+    implementation(project(":distribution-plugins:core:testing-jvm"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:reporting"))
+    implementation(project(":distribution-core:file-collections"))
 
     implementation(libs.groovy)
     implementation(libs.slf4jApi)
@@ -37,22 +37,22 @@ dependencies {
     implementation(libs.commonsLang)
     implementation(libs.inject)
 
-    testFixturesImplementation(project(":base-services"))
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":core"))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":distribution-core:core"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
     testFixturesImplementation(libs.jsoup)
 
-    testImplementation(project(":internal-testing"))
-    testImplementation(project(":resources"))
-    testImplementation(project(":internal-integ-testing"))
-    testImplementation(project(":language-java"))
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(project(":fixtures:internal-testing"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(project(":fixtures:internal-integ-testing"))
+    testImplementation(project(":distribution-plugins:core:language-java"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-jvm"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-jvm"))
 }
 
 strictCompile {

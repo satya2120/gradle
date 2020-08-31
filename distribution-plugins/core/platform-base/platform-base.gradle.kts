@@ -5,37 +5,37 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":core-api"))
-    implementation(project(":files"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":dependency-management"))
-    implementation(project(":workers"))
-    implementation(project(":execution"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:workers"))
+    implementation(project(":distribution-core:execution"))
 
     implementation(libs.groovy)
     implementation(libs.guava)
     implementation(libs.commonsLang)
 
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":core-api")))
-    testImplementation(project(":native"))
-    testImplementation(project(":snapshots"))
-    testImplementation(project(":process-services"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:core-api")))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:snapshots"))
+    testImplementation(project(":distribution-core:process-services"))
 
-    testFixturesApi(project(":core"))
-    testFixturesApi(project(":file-collections"))
-    testFixturesApi(testFixtures(project(":model-core")))
+    testFixturesApi(project(":distribution-core:core"))
+    testFixturesApi(project(":distribution-core:file-collections"))
+    testFixturesApi(testFixtures(project(":distribution-core:model-core")))
     testFixturesImplementation(libs.guava)
-    testFixturesApi(testFixtures(project(":model-core")))
-    testFixturesApi(testFixtures(project(":diagnostics")))
+    testFixturesApi(testFixtures(project(":distribution-core:model-core")))
+    testFixturesApi(testFixtures(project(":distribution-plugins:core:diagnostics")))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("RuntimeShadedJarCreatorTest requires a distribution to access the ...-relocated.txt metadata")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 classycle {

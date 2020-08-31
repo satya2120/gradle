@@ -1,8 +1,8 @@
-// tag::plugins[]
+// tag::distribution-plugins:core:plugins[]
 plugins {
     id 'java'
 }
-// end::plugins[]
+// end::distribution-plugins:core:plugins[]
 
 repositories {
     jcenter()

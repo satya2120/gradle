@@ -175,7 +175,7 @@ task someTask
             project(":war") {
                 apply plugin: 'war'
             }
-            project(":ear") {
+            project(":distribution-plugins:jvm:ear") {
                 apply plugin: 'ear'
                 dependencies {
                     deploy project(path: ':war', configuration: 'archives')

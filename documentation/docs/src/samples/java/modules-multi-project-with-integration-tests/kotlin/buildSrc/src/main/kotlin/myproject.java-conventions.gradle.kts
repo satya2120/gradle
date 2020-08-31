@@ -35,7 +35,7 @@ val integrationTestTask = tasks.register<Test>("integrationTest") {
     useJUnitPlatform()
 
     testClassesDirs = integrationTest.output.classesDirs
-    // Make sure we run the 'Jar' containing the tests (and not just the 'classes' folder) so that test resources are also part of the test module
+    // Make sure we run the 'Jar' containing the tests (and not just the 'classes' folder) so that test :distribution-core:resources are also part of the test module
     classpath = configurations[integrationTest.runtimeClasspathConfigurationName] + files(integrationTestJarTask)
 
     shouldRunAfter(tasks.test)

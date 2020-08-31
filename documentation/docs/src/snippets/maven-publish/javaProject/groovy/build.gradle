@@ -39,12 +39,12 @@ publishing {
     repositories {
         maven {
             def releasesRepoUrl = "$buildDir/repos/releases"
-            def snapshotsRepoUrl = "$buildDir/repos/snapshots"
+            def :distribution-core:snapshotsRepoUrl = "$buildDir/repos/:distribution-core:snapshots"
 // end::repo-url-from-variable[]
-            url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+            url = project.hasProperty('release') ? releasesRepoUrl : :distribution-core:snapshotsRepoUrl
 // end::repo-url-from-project-property[]
 // tag::repo-url-from-variable[]
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            url = version.endsWith('SNAPSHOT') ? :distribution-core:snapshotsRepoUrl : releasesRepoUrl
 // tag::repo-url-from-project-property[]
         }
     }

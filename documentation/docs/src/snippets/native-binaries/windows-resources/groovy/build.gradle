@@ -3,7 +3,7 @@ plugins {
 // end::apply-plugin[]
     id 'cpp'
 // tag::apply-plugin[]
-    id 'windows-resources'
+    id 'windows-:distribution-core:resources'
 }
 // end::apply-plugin[]
 

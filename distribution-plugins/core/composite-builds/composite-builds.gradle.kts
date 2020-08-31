@@ -20,24 +20,24 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":logging"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":dependency-management"))
-    implementation(project(":plugin-use"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:plugin-use"))
 
     implementation(libs.slf4jApi)
     implementation(libs.guava)
 
-    testImplementation(testFixtures(project(":dependency-management")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:dependency-management")))
 
-    integTestImplementation(project(":build-option"))
-    integTestImplementation(project(":launcher"))
+    integTestImplementation(project(":distribution-core:build-option"))
+    integTestImplementation(project(":distribution-core:launcher"))
 
-    integTestDistributionRuntimeOnly(project(":distributions-basics")) {
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics")) {
         because("Requires test-kit: 'java-gradle-plugin' is used in some integration tests which always adds the test-kit dependency.")
     }
 }

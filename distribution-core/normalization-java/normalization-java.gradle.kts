@@ -22,16 +22,16 @@ plugins {
 description = "API extraction for Java"
 
 dependencies {
-    implementation(project(":base-annotations"))
-    implementation(project(":hashing"))
-    implementation(project(":files"))
-    implementation(project(":snapshots"))
+    implementation(project(":distribution-core:base-annotations"))
+    implementation(project(":distribution-core:hashing"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:snapshots"))
 
     implementation(libs.asm)
     implementation(libs.guava)
     implementation(libs.slf4jApi)
     implementation(libs.commonsIo)
 
-    testImplementation(project(":base-services"))
-    testImplementation(project(":internal-testing"))
+    testImplementation(project(":distribution-core:base-services"))
+    testImplementation(project(":fixtures:internal-testing"))
 }

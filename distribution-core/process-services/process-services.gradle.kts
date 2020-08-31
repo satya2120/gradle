@@ -8,18 +8,18 @@ plugins {
 gradlebuildJava.usedInWorkers()
 
 dependencies {
-    implementation(project(":base-services"))
+    implementation(project(":distribution-core:base-services"))
 
-    implementation(project(":messaging"))
-    implementation(project(":native"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:native"))
 
     implementation(libs.slf4jApi)
     implementation(libs.guava)
     implementation(libs.nativePlatform)
 
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 classycle {

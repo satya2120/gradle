@@ -24,7 +24,7 @@ buildscript {
 <% } %>
 <% if (binding.hasVariable("buildScanPluginVersion")) { %>
         maven {
-            setUrl("https://repo.gradle.org/gradle/gradlecom-libs-snapshots-local")
+            setUrl("https://repo.gradle.org/gradle/gradlecom-libs-:distribution-core:snapshots-local")
         }
 <% } %>
     }
@@ -34,7 +34,7 @@ buildscript {
         classpath("com.gradle:build-scan-plugin:${buildScanPluginVersion}")
 <% }%>
 <% if(binding.hasVariable("springDmPluginVersion")) { %>
-        classpath("io.spring.gradle:dependency-management-plugin:$springDmPluginVersion")
+        classpath("io.spring.gradle:distribution-plugins:core:dependency-management"-plugin:$springDmPluginVersion")
 <% }%>
     }
 }

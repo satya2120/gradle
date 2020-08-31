@@ -19,14 +19,14 @@ plugins {
 }
 
 dependencies {
-    api(project(":core-api"))
+    api(project(":distribution-core:core-api"))
 
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":base-services-groovy"))
-    implementation(project(":messaging"))
-    implementation(project(":snapshots"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-core:base-services-groovy"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:snapshots"))
 
     implementation(libs.futureKotlin("stdlib"))
     implementation(libs.inject)
@@ -36,23 +36,23 @@ dependencies {
     implementation(libs.commonsLang)
     implementation(libs.asm)
 
-    testFixturesApi(testFixtures(project(":diagnostics")))
-    testFixturesApi(testFixtures(project(":core")))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesApi(testFixtures(project(":distribution-plugins:core:diagnostics")))
+    testFixturesApi(testFixtures(project(":distribution-core:core")))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
     testFixturesImplementation(libs.guava)
 
-    testImplementation(project(":process-services"))
-    testImplementation(project(":file-collections"))
-    testImplementation(project(":native"))
-    testImplementation(project(":resources"))
-    testImplementation(testFixtures(project(":core-api")))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-core:file-collections"))
+    testImplementation(project(":distribution-core:native"))
+    testImplementation(project(":distribution-core:resources"))
+    testImplementation(testFixtures(project(":distribution-core:core-api")))
 
-    integTestImplementation(project(":platform-base"))
+    integTestImplementation(project(":distribution-plugins:core:platform-base"))
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("Tests instantiate DefaultClassLoaderRegistry which requires a 'gradle-plugins.properties' through DefaultPluginModuleRegistry")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 strictCompile {

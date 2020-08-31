@@ -22,13 +22,13 @@ plugins {
 }
 
 dependencies {
-    testFixturesApi(project(":internal-performance-testing"))
+    testFixturesApi(project(":fixtures:internal-performance-testing"))
     testFixturesApi(libs.commonsIo)
-    testFixturesApi(project(":base-services"))
-    testFixturesImplementation(project(":internal-testing"))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesApi(project(":distribution-core:base-services"))
+    testFixturesImplementation(project(":fixtures:internal-testing"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
 
-    performanceTestDistributionRuntimeOnly(project(":distributions-full")) {
+    performanceTestDistributionRuntimeOnly(project(":distribution-setup:distributions-full")) {
         because("so that all Gradle features are available")
     }
 }
@@ -37,7 +37,7 @@ val generateTemplate = tasks.register<JvmProjectGeneratorTask>("javaProject") {
     dependencyGraph.run {
         size = 200
         depth = 5
-        useSnapshotVersions = false // snapshots should not have a build scan specific performance impact
+        useSnapshotVersions = false // :distribution-core:snapshots should not have a build scan specific performance impact
     }
 
     buildSrcTemplate = "buildsrc-plugins"

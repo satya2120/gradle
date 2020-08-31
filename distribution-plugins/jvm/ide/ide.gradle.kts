@@ -21,24 +21,24 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":file-collections"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":base-services-groovy"))
-    implementation(project(":dependency-management"))
-    implementation(project(":plugins"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-jvm"))
-    implementation(project(":language-jvm"))
-    implementation(project(":language-java"))
-    implementation(project(":language-scala"))
-    implementation(project(":scala"))
-    implementation(project(":ear"))
-    implementation(project(":tooling-api"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:base-services-groovy"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:core:platform-jvm"))
+    implementation(project(":distribution-plugins:core:language-jvm"))
+    implementation(project(":distribution-plugins:core:language-java"))
+    implementation(project(":distribution-plugins:jvm:language-scala"))
+    implementation(project(":distribution-plugins:jvm:scala"))
+    implementation(project(":distribution-plugins:jvm:ear"))
+    implementation(project(":distribution-core:tooling-api"))
 
     implementation(libs.groovy)
     implementation(libs.slf4jApi)
@@ -47,27 +47,27 @@ dependencies {
     implementation(libs.commonsIo)
     implementation(libs.inject)
 
-    testFixturesApi(project(":base-services")) {
+    testFixturesApi(project(":distribution-core:base-services")) {
         because("test fixtures export the Action class")
     }
-    testFixturesApi(project(":logging")) {
+    testFixturesApi(project(":distribution-core:logging")) {
         because("test fixtures export the ConsoleOutput class")
     }
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
 
-    testImplementation(project(":dependency-management"))
+    testImplementation(project(":distribution-plugins:core:dependency-management"))
     testImplementation(libs.xmlunit)
     testImplementation(libs.equalsverifier)
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":dependency-management")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:dependency-management")))
 
     integTestImplementation(libs.jetty)
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-jvm"))
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-jvm"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-jvm"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-jvm"))
 }
 
 strictCompile {

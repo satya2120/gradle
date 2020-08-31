@@ -20,33 +20,33 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":logging"))
-    implementation(project(":process-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":file-collections"))
-    implementation(project(":plugins"))
-    implementation(project(":dependency-management"))
-    implementation(project(":publish"))
-    implementation(project(":maven"))
-    implementation(project(":security"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:process-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-plugins:core:plugins"))
+    implementation(project(":distribution-plugins:core:dependency-management"))
+    implementation(project(":distribution-plugins:core:publish"))
+    implementation(project(":distribution-plugins:core:maven"))
+    implementation(project(":distribution-plugins:core:security"))
 
     implementation(libs.groovy)
     implementation(libs.slf4jApi)
     implementation(libs.guava)
     implementation(libs.inject)
 
-    testImplementation(project(":ivy"))
-    testImplementation(testFixtures(project(":core")))
+    testImplementation(project(":distribution-plugins:core:ivy"))
+    testImplementation(testFixtures(project(":distribution-core:core")))
 
-    testRuntimeOnly(testFixtures(project(":security")))
-    testRuntimeOnly(project(":distributions-publishing")) {
+    testRuntimeOnly(testFixtures(project(":distribution-plugins:core:security")))
+    testRuntimeOnly(project(":distribution-setup:distributions-publishing")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
 
-    integTestDistributionRuntimeOnly(project(":distributions-publishing"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-publishing"))
 }
 
 strictCompile {

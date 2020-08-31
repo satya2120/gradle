@@ -46,6 +46,6 @@ FileTree tar = tarTree('someFile.tar')
 
 //tar tree attempts to guess the compression based on the file extension
 //however if you must specify the compression explicitly you can:
-FileTree someTar = tarTree(resources.gzip('someTar.ext'))
+FileTree someTar = tarTree(:distribution-core:resources.gzip('someTar.ext'))
 
 // end::archive-trees[]

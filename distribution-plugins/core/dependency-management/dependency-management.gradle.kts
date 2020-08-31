@@ -21,23 +21,23 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":messaging"))
-    implementation(project(":native"))
-    implementation(project(":logging"))
-    implementation(project(":files"))
-    implementation(project(":file-collections"))
-    implementation(project(":persistent-cache"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":base-services-groovy"))
-    implementation(project(":build-cache"))
-    implementation(project(":core"))
-    implementation(project(":resources"))
-    implementation(project(":resources-http"))
-    implementation(project(":snapshots"))
-    implementation(project(":execution"))
-    implementation(project(":security"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:messaging"))
+    implementation(project(":distribution-core:native"))
+    implementation(project(":distribution-core:logging"))
+    implementation(project(":distribution-core:files"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-core:persistent-cache"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:base-services-groovy"))
+    implementation(project(":distribution-core:build-cache"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:resources"))
+    implementation(project(":distribution-plugins:basics:resources-http"))
+    implementation(project(":distribution-core:snapshots"))
+    implementation(project(":distribution-core:execution"))
+    implementation(project(":distribution-plugins:core:security"))
 
     implementation(libs.slf4jApi)
     implementation(libs.groovy)
@@ -54,41 +54,41 @@ dependencies {
     implementation(libs.ivy)
     implementation(libs.maven3)
 
-    testImplementation(project(":process-services"))
-    testImplementation(project(":diagnostics"))
-    testImplementation(project(":build-cache-packaging"))
+    testImplementation(project(":distribution-core:process-services"))
+    testImplementation(project(":distribution-plugins:core:diagnostics"))
+    testImplementation(project(":distribution-core:build-cache-packaging"))
     testImplementation(libs.nekohtml)
-    testImplementation(testFixtures(project(":core")))
-    testImplementation(testFixtures(project(":messaging")))
-    testImplementation(testFixtures(project(":core-api")))
-    testImplementation(testFixtures(project(":version-control")))
-    testImplementation(testFixtures(project(":resources-http")))
-    testImplementation(testFixtures(project(":base-services")))
-    testImplementation(testFixtures(project(":snapshots")))
-    testImplementation(testFixtures(project(":execution")))
+    testImplementation(testFixtures(project(":distribution-core:core")))
+    testImplementation(testFixtures(project(":distribution-core:messaging")))
+    testImplementation(testFixtures(project(":distribution-core:core-api")))
+    testImplementation(testFixtures(project(":distribution-plugins:core:version-control")))
+    testImplementation(testFixtures(project(":distribution-plugins:basics:resources-http")))
+    testImplementation(testFixtures(project(":distribution-core:base-services")))
+    testImplementation(testFixtures(project(":distribution-core:snapshots")))
+    testImplementation(testFixtures(project(":distribution-core:execution")))
 
-    integTestImplementation(project(":build-option"))
+    integTestImplementation(project(":distribution-core:build-option"))
     integTestImplementation(libs.jansi)
     integTestImplementation(libs.ansiControlSequenceUtil)
     integTestImplementation(libs.jetty) {
         because("tests use HttpServlet directly")
     }
-    integTestImplementation(testFixtures(project(":security")))
+    integTestImplementation(testFixtures(project(":distribution-plugins:core:security")))
 
-    testFixturesApi(project(":base-services")) {
+    testFixturesApi(project(":distribution-core:base-services")) {
         because("Test fixtures export the Action class")
     }
-    testFixturesApi(project(":persistent-cache")) {
+    testFixturesApi(project(":distribution-core:persistent-cache")) {
         because("Test fixtures export the CacheAccess class")
     }
 
     testFixturesApi(libs.jetty)
-    testFixturesImplementation(project(":core"))
-    testFixturesImplementation(testFixtures(project(":core")))
-    testFixturesImplementation(testFixtures(project(":resources-http")))
-    testFixturesImplementation(project(":core-api"))
-    testFixturesImplementation(project(":messaging"))
-    testFixturesImplementation(project(":internal-integ-testing"))
+    testFixturesImplementation(project(":distribution-core:core"))
+    testFixturesImplementation(testFixtures(project(":distribution-core:core")))
+    testFixturesImplementation(testFixtures(project(":distribution-plugins:basics:resources-http")))
+    testFixturesImplementation(project(":distribution-core:core-api"))
+    testFixturesImplementation(project(":distribution-core:messaging"))
+    testFixturesImplementation(project(":fixtures:internal-integ-testing"))
     testFixturesImplementation(libs.slf4jApi)
     testFixturesImplementation(libs.inject)
     testFixturesImplementation(libs.guava) {
@@ -98,15 +98,15 @@ dependencies {
     testFixturesApi(libs.testcontainersSpock) {
         because("API because of Groovy compiler bug leaking internals")
     }
-    testFixturesImplementation(project(":jvm-services")) {
+    testFixturesImplementation(project(":distribution-core:jvm-services")) {
         because("Groovy compiler bug leaks internals")
     }
 
-    testRuntimeOnly(project(":distributions-core")) {
+    testRuntimeOnly(project(":distribution-setup:distributions-core")) {
         because("ProjectBuilder tests load services from a Gradle distribution.")
     }
-    integTestDistributionRuntimeOnly(project(":distributions-basics"))
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-core"))
+    integTestDistributionRuntimeOnly(project(":distribution-setup:distributions-basics"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-core"))
 }
 
 classycle {

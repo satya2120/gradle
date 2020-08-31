@@ -18,8 +18,8 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":native"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:native"))
 
     implementation(libs.groovy)
     implementation(libs.slf4jApi)

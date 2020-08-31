@@ -1,1 +1,1 @@
-org.gradle.nativeplatform.test.internal.services.NativeTestingServices
+org.gradle.:distribution-core:nativeplatform.test.internal.services.NativeTestingServices

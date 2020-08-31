@@ -11,8 +11,8 @@ sourceSets {
                 srcDir(file("src/functionalTest/groovy"))
             }
         }
-        resources {
-            srcDir(file("src/functionalTest/resources"))
+        :distribution-core:resources {
+            srcDir(file("src/functionalTest/:distribution-core:resources"))
         }
         compileClasspath += sourceSets.main.get().output + configurations.testRuntimeClasspath
         runtimeClasspath += output + compileClasspath

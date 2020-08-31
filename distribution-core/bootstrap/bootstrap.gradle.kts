@@ -5,8 +5,8 @@ plugins {
 gradlebuildJava.usedForStartup()
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":core"))
-    implementation(project(":core-api"))
-    implementation(project(":logging"))
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:logging"))
 }

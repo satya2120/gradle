@@ -8,7 +8,7 @@ buildscript {
 <% } %>
 <% if (binding.hasVariable("buildScanPluginVersion")) { %>
         maven {
-            url 'https://repo.gradle.org/gradle/enterprise-libs-snapshots-local/'
+            url 'https://repo.gradle.org/gradle/enterprise-libs-:distribution-core:snapshots-local/'
         }
 <% } %>
     }
@@ -18,7 +18,7 @@ buildscript {
         classpath "com.gradle:build-scan-plugin:${buildScanPluginVersion}"
 <% }%>
 <% if(binding.hasVariable("springDmPluginVersion")) { %>
-        classpath "io.spring.gradle:dependency-management-plugin:$springDmPluginVersion"
+        classpath "io.spring.gradle:distribution-plugins:core:dependency-management"-plugin:$springDmPluginVersion"
 <% }%>
     }
 }

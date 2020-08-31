@@ -28,7 +28,7 @@ model {
                 }
             }
             binaries.all {
-                // TODO: Use dependency graph builder to created a layered native build
+                // TODO: Use dependency graph builder to created a layered :distribution-core:native build
                 <% prebuiltLibraries.times { %>
                 // TODO: Use a different linkage
                 lib project: ':', library: "prebuilt$it", linkage: 'api'

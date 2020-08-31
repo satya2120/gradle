@@ -18,23 +18,23 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":base-services"))
-    implementation(project(":core-api"))
-    implementation(project(":model-core"))
-    implementation(project(":core"))
-    implementation(project(":file-collections"))
-    implementation(project(":platform-base"))
-    implementation(project(":platform-native"))
-    implementation(project(":language-native"))
-    implementation(project(":testing-native"))
-    implementation(project(":tooling-api"))
-    implementation(project(":ide")) {
+    implementation(project(":distribution-core:base-services"))
+    implementation(project(":distribution-core:core-api"))
+    implementation(project(":distribution-core:model-core"))
+    implementation(project(":distribution-core:core"))
+    implementation(project(":distribution-core:file-collections"))
+    implementation(project(":distribution-plugins:core:platform-base"))
+    implementation(project(":distribution-plugins:native:platform-native"))
+    implementation(project(":distribution-plugins:native:language-native"))
+    implementation(project(":distribution-plugins:native:testing-native"))
+    implementation(project(":distribution-core:tooling-api"))
+    implementation(project(":distribution-plugins:jvm:ide")) {
         because("To pick up various builders (which should live somewhere else)")
     }
 
     implementation(libs.guava)
 
-    testImplementation(testFixtures(project(":platform-native")))
+    testImplementation(testFixtures(project(":distribution-plugins:native:platform-native")))
 
-    crossVersionTestDistributionRuntimeOnly(project(":distributions-native"))
+    crossVersionTestDistributionRuntimeOnly(project(":distribution-setup:distributions-native"))
 }

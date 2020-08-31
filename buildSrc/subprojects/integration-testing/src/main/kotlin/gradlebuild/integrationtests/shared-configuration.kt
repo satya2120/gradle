@@ -49,7 +49,7 @@ fun Project.addDependenciesAndConfigurations(prefix: String) {
         val platformImplementation = findByName("platformImplementation")
 
         val distributionRuntimeOnly = bucket("${prefix}TestDistributionRuntimeOnly", "Declare the distribution that is required to run tests")
-        val localRepository = bucket("${prefix}TestLocalRepository", "Declare a local repository required as input data for the tests (e.g. :tooling-api)")
+        val localRepository = bucket("${prefix}TestLocalRepository", "Declare a local repository required as input data for the tests (e.g. :distribution-core:tooling-api)")
         val normalizedDistribution = bucket("${prefix}TestNormalizedDistribution", "Declare a normalized distribution (bin distribution without timestamp in version) to be used in tests")
         val binDistribution = bucket("${prefix}TestBinDistribution", "Declare a bin distribution to be used by tests - useful for testing the final distribution that is published")
         val allDistribution = bucket("${prefix}TestAllDistribution", "Declare a all distribution to be used by tests - useful for testing the final distribution that is published")
@@ -81,8 +81,8 @@ fun Project.addDependenciesAndConfigurations(prefix: String) {
     dependencies {
         "${prefix}TestRuntimeOnly"(project.the<ExternalModulesExtension>().junit5Vintage)
         if (name != "test") { // do not attempt to find projects during script compilation
-            "${prefix}TestImplementation"(project(":internal-integ-testing"))
-            "${prefix}TestFullDistributionRuntimeClasspath"(project(":distributions-full"))
+            "${prefix}TestImplementation"(project(":fixtures:internal-integ-testing"))
+            "${prefix}TestFullDistributionRuntimeClasspath"(project(":distribution-setup:distributions-full"))
         }
     }
 }

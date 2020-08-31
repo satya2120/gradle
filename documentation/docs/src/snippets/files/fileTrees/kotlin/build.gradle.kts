@@ -48,6 +48,6 @@ val tar: FileTree = tarTree("someFile.tar")
 
 // tar tree attempts to guess the compression based on the file extension
 // however if you must specify the compression explicitly you can:
-val someTar: FileTree = tarTree(resources.gzip("someTar.ext"))
+val someTar: FileTree = tarTree(:distribution-core:resources.gzip("someTar.ext"))
 
 // end::archive-trees[]
