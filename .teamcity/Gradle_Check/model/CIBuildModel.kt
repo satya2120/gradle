@@ -250,7 +250,7 @@ data class TestCoverage(val uuid: Int, val testType: TestType, val os: Os, val t
     }
 
     fun asName(): String =
-        "Test Coverage - ${testType.name.capitalize()} ${testJvmVersion.name.capitalize()} ${vendor.name.capitalize()} ${os.name.toLowerCase().capitalize()}${if (withoutDependencies) " without dependencies" else ""}"
+        "Test Coverage - ${testType.name.capitalize()} ${testJvmVersion.name.capitalize()} ${vendor.name.capitalize()} ${os.capitalized()}${if (withoutDependencies) " without dependencies" else ""}"
 
     val isQuick: Boolean = withoutDependencies || testType == TestType.quick
 }

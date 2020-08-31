@@ -16,22 +16,22 @@
 
 package common
 
-val killAllGradleProcessesUnixLike = """
-    free -m
-    ps aux | egrep 'Gradle(Daemon|Worker)'
-    ps aux | egrep 'Gradle(Daemon|Worker)' | awk '{print ${'$'}2}' | xargs kill -9
-    free -m
-    ps aux | egrep 'Gradle(Daemon|Worker)' | awk '{print ${'$'}2}'
-""".trimIndent()
+const val killAllGradleProcessesUnixLike = """
+free -m
+ps aux | egrep 'Gradle(Daemon|Worker)'
+ps aux | egrep 'Gradle(Daemon|Worker)' | awk '{print ${'$'}2}' | xargs kill -9
+free -m
+ps aux | egrep 'Gradle(Daemon|Worker)' | awk '{print ${'$'}2}'
+"""
 
-val killAllGradleProcessesWindows = """
-    wmic OS get FreePhysicalMemory,FreeVirtualMemory,FreeSpaceInPagingFiles /VALUE
-    wmic Path win32_process Where "name='java.exe'"
-    wmic Path win32_process Where "name='java.exe' AND CommandLine Like '%%%%GradleDaemon%%%%'" Call Terminate
-    wmic Path win32_process Where "name='java.exe' AND CommandLine Like '%%%%GradleWorker%%%%'" Call Terminate
-    wmic OS get FreePhysicalMemory,FreeVirtualMemory,FreeSpaceInPagingFiles /VALUE
-    wmic Path win32_process Where "name='java.exe'"
-""".trimIndent()
+const val killAllGradleProcessesWindows = """
+wmic OS get FreePhysicalMemory,FreeVirtualMemory,FreeSpaceInPagingFiles /VALUE
+wmic Path win32_process Where "name='java.exe'"
+wmic Path win32_process Where "name='java.exe' AND CommandLine Like '%%%%GradleDaemon%%%%'" Call Terminate
+wmic Path win32_process Where "name='java.exe' AND CommandLine Like '%%%%GradleWorker%%%%'" Call Terminate
+wmic OS get FreePhysicalMemory,FreeVirtualMemory,FreeSpaceInPagingFiles /VALUE
+wmic Path win32_process Where "name='java.exe'"
+"""
 
 enum class Os(val agentRequirement: String, val ignoredSubprojects: List<String> = emptyList(), val androidHome: String, val killAllGradleProcesses: String) {
     LINUX("Linux", androidHome = "/opt/android/sdk", killAllGradleProcesses = killAllGradleProcessesUnixLike),
@@ -43,4 +43,8 @@ enum class Os(val agentRequirement: String, val ignoredSubprojects: List<String>
     );
 
     fun escapeKeyValuePair(key: String, value: String) = if (this == WINDOWS) """$key="$value"""" else """"$key=$value""""
+
+    fun lowerCase() = name.toLowerCase()
+
+    fun capitalized() = name.toLowerCase().capitalize()
 }
