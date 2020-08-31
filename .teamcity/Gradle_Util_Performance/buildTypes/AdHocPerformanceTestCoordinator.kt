@@ -45,7 +45,6 @@ open class AdHocPerformanceTestCoordinator(os: Os) : BuildType({
         gradleWrapper {
             name = "GRADLE_RUNNER"
             tasks = ""
-            workingDir = "%teamcity.build.checkoutDir%"
             gradleParams = (
                 buildToolGradleParameters(isContinue = false) +
                     performanceTestCommandLine(task = "clean :performance:distributedPerformanceTest", baselines = "%performance.baselines%", os = os) +
