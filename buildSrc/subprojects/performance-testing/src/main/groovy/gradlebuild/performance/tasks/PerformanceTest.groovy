@@ -181,6 +181,11 @@ abstract class PerformanceTest extends DistributionTest {
         return databaseParameters.get("org.gradle.performance.db.url")
     }
 
+    @Input
+    String getPoisonPill() {
+        return UUID.randomUUID().toString()
+    }
+
     @Internal
     Map<String, String> getDatabaseParameters() {
         return databaseParameters
