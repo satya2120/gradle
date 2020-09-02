@@ -65,6 +65,8 @@ public class CrossBuildSessionScopeServices implements Closeable {
 
     public CrossBuildSessionScopeServices(ServiceRegistry parent, StartParameter startParameter) {
         this.services = new Services(parent, startParameter);
+        // Trigger listener to wire itself in
+        services.get(BuildOperationTrace.class);
     }
 
     public ServiceRegistry getServices() {
@@ -136,7 +138,7 @@ public class CrossBuildSessionScopeServices implements Closeable {
             return new LoggingBuildOperationProgressBroadcaster(outputEventListenerManager, buildOperationProgressEventEmitter);
         }
 
-        BuildOperationTrace createBuildOperationTrace(StartParameter startParameter, BuildOperationListenerManager buildOperationListenerManager) {
+        BuildOperationTrace createBuildOperationTrace(BuildOperationListenerManager buildOperationListenerManager) {
             return new BuildOperationTrace(startParameter, buildOperationListenerManager);
         }
 
