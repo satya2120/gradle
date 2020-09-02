@@ -35,13 +35,13 @@ class JavaExecToolchainIntegrationTest extends AbstractPluginIntegrationTest {
             }
 
             compileJava {
-                javaCompiler = javaToolchains.compilerFrom {
+                javaCompiler = javaToolchains.compilerFor {
                     languageVersion = JavaVersion.${jdk.javaVersion.name()}
                 }
             }
 
             run {
-                javaLauncher = javaToolchains.launcherFrom {
+                javaLauncher = javaToolchains.launcherFor {
                     languageVersion = JavaVersion.${jdk.javaVersion.name()}
                 }
             }
