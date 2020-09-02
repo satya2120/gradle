@@ -16,8 +16,6 @@
 package org.gradle.internal.reflect;
 
 import org.gradle.api.reflect.ObjectInstantiationException;
-import org.gradle.internal.service.scopes.Scopes;
-import org.gradle.internal.service.scopes.ServiceScope;
 
 /**
  * An object that can create new instances of various types. An {@code Instantiator}, depending on its implementation and configuration, may provide
@@ -36,7 +34,6 @@ import org.gradle.internal.service.scopes.ServiceScope;
  *
  * <p>A service of this type is available in all scopes. However, the recommended way to receive an {@code Instantiator} is via a {@link org.gradle.internal.instantiation.InstantiatorFactory}.</p>
  */
-@ServiceScope(Scopes.BuildTree.class)
 public interface Instantiator {
 
     /**
