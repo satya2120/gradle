@@ -44,6 +44,9 @@ class ServicesCodec : EncodingProducer, Decoding {
                 return serviceType
             }
         }
+        if (type.superclass != null) {
+            return serviceType(type.superclass)
+        }
         return null
     }
 
