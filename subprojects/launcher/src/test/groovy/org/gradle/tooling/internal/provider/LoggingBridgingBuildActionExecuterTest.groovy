@@ -18,14 +18,14 @@ package org.gradle.tooling.internal.provider
 import org.gradle.api.logging.LogLevel
 import org.gradle.initialization.BuildRequestContext
 import org.gradle.internal.invocation.BuildAction
+import org.gradle.internal.logging.LoggingManagerInternal
 import org.gradle.internal.service.ServiceRegistry
 import org.gradle.launcher.exec.BuildActionExecuter
-import org.gradle.internal.logging.LoggingManagerInternal
 import org.gradle.tooling.internal.provider.connection.ProviderOperationParameters
 import spock.lang.Specification
 
 class LoggingBridgingBuildActionExecuterTest extends Specification {
-    final BuildActionExecuter<ProviderOperationParameters> target = Mock()
+    final BuildActionExecuter<ConnectionOperationParameters, BuildRequestContext> target = Mock()
     final LoggingManagerInternal loggingManager = Mock()
     final BuildAction action = Mock()
     final BuildRequestContext buildRequestContext = Mock()
@@ -56,7 +56,7 @@ class LoggingBridgingBuildActionExecuterTest extends Specification {
         RuntimeException e = thrown()
         e == failure
         1 * loggingManager.start()
-        1 * target.execute(action, buildRequestContext, parameters, contextServices) >> {throw failure}
+        1 * target.execute(action, buildRequestContext, parameters, contextServices) >> { throw failure }
         1 * loggingManager.stop()
     }
 

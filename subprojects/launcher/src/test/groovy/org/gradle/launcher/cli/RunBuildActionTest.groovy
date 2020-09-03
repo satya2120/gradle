@@ -32,7 +32,7 @@ import org.gradle.tooling.internal.provider.serialization.SerializedPayload
 import spock.lang.Specification
 
 class RunBuildActionTest extends Specification {
-    final BuildActionExecuter<BuildActionParameters> client = Mock()
+    final BuildActionExecuter<BuildActionParameters, BuildRequestContext> client = Mock()
     final StartParameterInternal startParameter = Mock()
     final BuildClientMetaData clientMetaData = Mock()
     final long startTime = 90
